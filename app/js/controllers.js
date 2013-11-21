@@ -4,8 +4,10 @@
 angular.module('myApp.controllers', [])
   .controller('ctlLogin', ['$scope', 'loginFactory', function($scope, lfactory) {
 	 
-	$scope.ptnWord = /^\s*\w*\s*$/
-	 	
+	$scope.ptnPTIN = /^\s*\d*\s*$/
+	 
+	//$scope.ptnWord = /^\s*\w*\s*$/
+	
 	$scope.userInfo = {
          ptin: "myptin",
          email: "myemail",

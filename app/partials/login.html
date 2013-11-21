@@ -1,7 +1,29 @@
-<p>Partial view for login</p>
+<p>User Verification</p>
+Use of this tool is currently limited to return preparers possessing a Preparer Tax Identification Number (PTIN). 
+<br/>
+If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTIN-Top-FAQ-3">register for a PTIN</a> to use this tool. 
  
-  <input type="text" ng-model="userInfo.ptin" ng-pattern="ptnWord" />  <b>{{userInfo.ptin}}</b>
+<form name="loginForm">  <!-- form is present to access errors -->
+ <div>
+	PTIN: 
+  <input type="text" name="ptin" ng-model="userInfo.ptin" ng-pattern="ptnPTIN" />   
+  <span class="error" ng-show="loginForm.ptin.$error.pattern">Enter a valid PTIN</span>
+ </div>
+ <div>
+	EMAIL:
+  <input type="email" ng-model="userInfo.email" />  
+ </div>
+ <div>
+	PASSWORD:
   <input type="text" ng-model="userInfo.password" />  
-  <input type="submit" value="log in" ng-click="logMeIn()" />
-	
-    <pre>{{ userInfo | json }}</pre>
+ </div>
+ 
+ <input type="submit" value="log in" ng-click="logMeIn()" />
+</form>
+ 
+ <div>
+debugging info: 
+<br/><b>ptin: {{userInfo.ptin}}</b> 
+<br/><b>{{loginForm.$error | json }}</b> 
+ <pre>{{ userInfo | json }}</pre>
+  </div>
