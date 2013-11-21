@@ -1,0 +1,7 @@
+<p>Partial view for login</p>
+ 
+  <input type="text" ng-model="userInfo.ptin" ng-pattern="ptnWord" />  <b>{{userInfo.ptin}}</b>
+  <input type="text" ng-model="userInfo.password" />  
+  <input type="submit" value="log in" ng-click="logMeIn()" />
+	
+    <pre>{{ userInfo | json }}</pre>

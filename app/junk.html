@@ -1,0 +1,13 @@
+<form name="myForm" >
+Single word: <input type="text" name="email" ng-model="userInfo.ptin" required ng-trim="false" ng-pattern="ptnWord">
+ <span class="error" ng-show="myForm.email.$error.required">*</span>
+<span class="error" ng-show="myForm.email.$error.pattern">Single word only!</span>
+
+
+<tt>text = {{email}}</tt><br/>
+<tt>myForm.email.$valid = {{myForm.email.$valid}}</tt><br/>
+<tt>myForm.email.$error = {{myForm.email.$error}}</tt><br/>
+<tt>myForm.$valid = {{myForm.$valid}}</tt><br/>
+<tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br/>
+
+</form>
