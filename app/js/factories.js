@@ -7,15 +7,29 @@
 angular.module('myApp.factories', []).
 
 //for checking the user's login
-factory('loginFactory', ['$http', function(http) {
+factory('loginFactory', ['$http', 'userService', function(http, userService) {
 	return {
         login: function(user) {
-			//return ok if both are valid.
-            if (user['ptin'] && user['email']) 
-				return "ok"; 
-			else
-				return "no";
-        }
+			if (userService.isLogged) {
+				alert("You're already logged in");
+				return true;
+			}
+			//for testing - log in if both are valid.
+            if (user['ptin'] && user['email']) { 
+				userService.isLogged = true;
+				return true; 
+			}
+			return false;
+        },
+
+		logout: function() {
+			userService.isLogged = false;
+		}, 
+		
+		isloggedin: function() {
+			alert('a');
+			return true;
+		}
     };
 }])
 
@@ -26,6 +40,10 @@ factory('loginFactory', ['$http', function(http) {
 		ptin: ''
 	};
 	return sdo;
+}])
+
+.factory('logoutService', [function() {
+	userService.isLogged = false;
 }]);
 
 

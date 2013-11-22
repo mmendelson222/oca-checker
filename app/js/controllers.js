@@ -18,6 +18,14 @@ angular.module('myApp.controllers', [])
 		alert(result);
 	}
 
+	$scope.logMeOut = function() { 
+		var result = lfactory.logout(); 
+	}
+	
+	$scope.isLoggedIn = function() { 
+		return lfactory.loggedin(); 
+	}
+
   }])
   
   .controller('ctlCheckReceipts', ['$scope', function($scope) {

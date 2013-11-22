@@ -17,6 +17,7 @@
 		<li><a href="#/print">Print</a></li>
 		<li><a href="#/help">Help</a></li>
 		<li><a href="#/exit">Exit</a></li>
+		<li ng-if="lfactory.isloggedin()"><a href="#/login" ng-controller="ctlLogin" ng-click="logMeOut()">logout</a></li>
 	  </ul>
  </div>
 
@@ -26,6 +27,8 @@
     <li><a href="#/check">check receipts</a></li>
     <li><a href="#/results">How do I compare?</a></li>
   </ul>
+
+
 
   <div ng-view></div>
   
