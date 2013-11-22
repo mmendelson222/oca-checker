@@ -21,6 +21,27 @@ angular.module('myApp.controllers', [])
 
   }])
   
+  .controller('ctlCheckReceipts', ['$scope', function($scope) {
+
+		$scope.ptnMcc = /^\s*\d{4}\s*$/
+		$scope.ptnZip = /^\s*\d{5}\s*$/
+  
+		//probably not needed.
+		$scope.checkInfo = {
+			 mcc: "",
+			 zip: "zip",
+			 receiptsCard: "",
+			 receiptsTotal: "",
+			 transactionCount: ""
+		 }
+	 
+	$scope.submitRequest = function() { 
+		alert("hoook me up!");
+	}
+
+	
+  }])
+  
   .controller('MyCtrl2', [function() {
 
   }]);
