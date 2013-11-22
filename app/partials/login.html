@@ -1,29 +1,40 @@
-<p>User Verification</p>
+<h2>User Verification</h2>
 Use of this tool is currently limited to return preparers possessing a Preparer Tax Identification Number (PTIN). 
 <br/>
 If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTIN-Top-FAQ-3">register for a PTIN</a> to use this tool. 
- 
+
 <form name="loginForm">  <!-- form is present to access errors -->
- <div>
-	PTIN: 
-  <input type="text" name="ptin" ng-model="userInfo.ptin" ng-pattern="ptnPTIN" />   
-  <span class="error" ng-show="loginForm.ptin.$error.pattern">Enter a valid PTIN</span>
- </div>
- <div>
-	EMAIL:
-  <input type="email" ng-model="userInfo.email" />  
- </div>
- <div>
-	PASSWORD:
-  <input type="password" ng-model="userInfo.password" />  
- </div>
- 
- <input type="submit" value="log in" ng-click="logMeIn()" />
+<div>
+	<div>
+	<label for="ptin">PTIN</label>
+	</div>
+	<div>
+	<input type="text" name="ptin" ng-model="userInfo.ptin" ng-pattern="ptnPTIN" popover-trigger="focus" popover="The letter P, followed by 8 digits" />   
+	<span class="error" ng-show="loginForm.ptin.$error.pattern">Enter a valid PTIN, starting with "P"</span>
+	</div>
+
+	<div>
+	<label for="email">Email Address</label>
+	</div>
+	<div><input type="email" ng-model="userInfo.email" />  
+	</div>
+
+</div>
+
+<div class="btn-group">
+	<button type="button" class="btn btn-primary" onclick="javascript:location.href='http://irs.gov'" >
+		< Return to IRS.GOV
+	</button>
+	<button type="button" class="btn btn-primary" ng-click="logMeIn()" >
+		Continue >
+	</button>
+</div>
+
 </form>
- 
- <div>
+
+<div>
 debugging info: 
 <br/><b>ptin: {{userInfo.ptin}}</b> 
 <br/><b>{{loginForm.$error | json }}</b> 
- <pre>{{ userInfo | json }}</pre>
-  </div>
+<pre>{{ userInfo | json }}</pre>
+</div>

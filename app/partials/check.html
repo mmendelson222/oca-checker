@@ -4,42 +4,46 @@ Use of this tool is currently limited to return preparers possessing a Preparer 
 If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTIN-Top-FAQ-3">register for a PTIN</a> to use this tool. 
  
 <form name="checkForm">  <!-- form is present to access errors -->
- <div>
-4-digit Merchant Category Code (MCC): 
- </div>
- <div>
- <input type="text" name="mcc" ng-model="checkInfo.mcc" ng-pattern="ptnMcc"  />  
- <span class="error" ng-show="checkForm.mcc.$error.pattern">Enter a 4-digit MCC code</span> 
- </div>
- 
 <div>
-5-digit ZIP code of business location
+	<div>
+	<label for="mcc">4-digit Merchant Category Code (MCC)</label>
+	</div>
+	<div>
+	<input type="text" name="mcc" ng-model="checkInfo.mcc" ng-pattern="ptnMcc" />  
+	<span class="error" ng-show="checkForm.mcc.$error.pattern">Enter a 4-digit MCC code</span> 
+	</div>
+
+	<div>
+	<label for="zip">5-digit ZIP code of business location</label>
+	</div>
+	<div>
+	<input type="text" name="zip" ng-model="checkInfo.zip" ng-pattern="ptnZip"    />   
+	<span class="error" ng-show="checkForm.zip.$error.pattern">Enter a 5-digit ZIP code</span> 
+	</div>
+
+	<div>
+	<label for="receiptsCard">1099-K card receipts </label>
+	</div>
+	<div>
+	<input type="text" name="receiptsCard" ng-model="checkInfo.receiptsCard"  />   
+	</div>
+
+	<div>
+	<label for="receiptsTotal">Total Receipts </label>
+	</div>
+	<div>
+	<input type="text" name="receiptsTotal" ng-model="checkInfo.receiptsTotal"  />   
+	</div>
+	 
+	<div>
+	<label for="transactionCount">Transaction Count </label>
+	</div>
+	<div>
+	<input type="text" name="transactionCount" ng-model="checkInfo.transactionCount"  />   
+	</div>
+
 </div>
-<div>
-<input type="text" name="zip" ng-model="checkInfo.zip"  />   
-<span class="error" ng-show="checkForm.mcc.$error.pattern">Enter a 5-digit ZIP code</span> 
-</div>
- 
-<div>
-1099-K card receipts 
-</div>
-<div>
-<input type="text" name="receiptsCard" ng-model="checkInfo.receiptsCard"  />   
-</div>
- 
-<div>
-Total Receipts 
-</div>
-<div>
-<input type="text" name="receiptsTotal" ng-model="checkInfo.receiptsTotal"  />   
-</div>
- 
-<div>
-Transaction Count 
-</div>
-<div>
-<input type="text" name="transactionCount" ng-model="checkInfo.transactionCount"  />   
-</div>
+
 <input type="submit" value="Submit Request" ng-click="submitRequest()" />
 </form>
  

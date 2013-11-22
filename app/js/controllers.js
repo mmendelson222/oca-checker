@@ -4,14 +4,13 @@
 angular.module('myApp.controllers', [])
   .controller('ctlLogin', ['$scope', 'loginFactory', function($scope, lfactory) {
 	 
-	$scope.ptnPTIN = /^\s*\d*\s*$/
+	$scope.ptnPTIN = /^\s*[Pp]\d{8}\s*$/
 	 
 	//$scope.ptnWord = /^\s*\w*\s*$/
 	
 	$scope.userInfo = {
-         ptin: "myptin",
-         email: "myemail",
-		 password: ""
+         ptin: "",
+         email: "",
      }
 	 
  	$scope.logMeIn = function() { 
@@ -29,7 +28,7 @@ angular.module('myApp.controllers', [])
 		//probably not needed.
 		$scope.checkInfo = {
 			 mcc: "",
-			 zip: "zip",
+			 zip: "",
 			 receiptsCard: "",
 			 receiptsTotal: "",
 			 transactionCount: ""
@@ -38,8 +37,6 @@ angular.module('myApp.controllers', [])
 	$scope.submitRequest = function() { 
 		alert("hoook me up!");
 	}
-
-	
   }])
   
   .controller('MyCtrl2', [function() {
