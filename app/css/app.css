@@ -2,18 +2,19 @@
 
 .menu {
   list-style: none;
-  border-bottom: 0.1em solid black;
   margin-bottom: 2em;
-  padding: 0 0 0.5em;
+  margin-left: 0;
+  padding: 0 0 0em;
 }
 
-.menu:before {
-  content: "[";
-}
+.top-border  { border-top: 0.1em solid black; }
+.center {  text-align: center; }
+.right { float: right; }
 
-.menu:after {
-  content: "]";
-}
+/*
+.menu:before { content: "["; }
+.menu:after { content: "]"; }
+*/
 
 .menu > li {
   display: inline;

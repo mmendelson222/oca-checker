@@ -3,30 +3,38 @@
 <head>
   <meta charset="utf-8">
   <title>Merchant Card Receipts Tool</title>
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"/>
+  <!-- 
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"/> -->
+  <link rel="stylesheet" href="css/bootstrap.css"/>
   <link rel="stylesheet" href="css/app.css"/>
  </head>
 <body>
- <ul class="menu">
-    <li><a href="#/print">Print</a></li>
-    <li><a href="#/help">Help</a></li>
-    <li><a href="#/exit">Exit</a></li>
-  </ul>
+
+<div class="container">
+ <div>
+	<img src="img/irs-logo.png" alt="IRS Logo" />
+	 <ul class="menu right">
+		<li><a href="#/print">Print</a></li>
+		<li><a href="#/help">Help</a></li>
+		<li><a href="#/exit">Exit</a></li>
+	  </ul>
+ </div>
 
  <h1>Merchant Card Receipts Tool</h1>
   <ul class="menu">
     <li><a href="#/login">user verification</a></li>
     <li><a href="#/check">check receipts</a></li>
-    <li><a href="#/view2">view2</a></li>
+    <li><a href="#/results">How do I compare?</a></li>
   </ul>
 
   <div ng-view></div>
   
-   <ul class="menu">
+   <ul class="menu center top-border">
     <li><a href="#/contact">Contact Us</a></li>
     <li><a href="#/policy">IRS Privacy Policy</a></li>
   </ul>
-  
+
+</div>  
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 -->

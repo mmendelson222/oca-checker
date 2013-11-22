@@ -38,7 +38,4 @@ angular.module('myApp.controllers', [])
 		alert("hoook me up!");
 	}
   }])
-  
-  .controller('MyCtrl2', [function() {
-
-  }]);
+  ;

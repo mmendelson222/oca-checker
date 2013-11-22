@@ -1,8 +1,5 @@
-<p>Check Receipts</p>
-Use of this tool is currently limited to return preparers possessing a Preparer Tax Identification Number (PTIN). 
-<br/>
-If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTIN-Top-FAQ-3">register for a PTIN</a> to use this tool. 
- 
+<h2>Check Receipts</h2>
+<p>This tool is designed to provide additional informatin regarding the IRS's use of form 1099-K in assessing businesses.  Using your applicable tax return and Form 1099-K, please enter your business's information in the following fields.  <a href="#/privacy">Privacy Policy</a></p> 
 <form name="checkForm">  <!-- form is present to access errors -->
 <div>
 	<div>
@@ -44,11 +41,19 @@ If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTI
 
 </div>
 
-<input type="submit" value="Submit Request" ng-click="submitRequest()" />
+<div class="btn-group">
+	<button type="button" class="btn btn-primary" onclick="javascript:window.history.back()" >
+			< Previous
+	</button>
+	<button type="button" class="btn btn-primary" ng-click="submitRequest()" >
+			Continue
+	</button>
+</div>
+
 </form>
  
 <div>
 debugging info: 
-<br/><b>{{checkForm.$error | json }}</b> 
+<b>error {{checkForm.$error | json }}</b><br/>
 <pre>checkInfo {{checkInfo | json }}</pre>
 </div>
