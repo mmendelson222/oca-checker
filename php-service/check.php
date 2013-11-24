@@ -41,30 +41,9 @@ if ($error) {
 		$results_data['result'] = 'false';
 }
 
-if (isset($_GET['format']))
-	$format = strtolower($_GET['format']) == 'json' ? 'json' : 'xml'; //xml is the default
-else
-	$format = 'xml';
-
-/* output in necessary format */
-if($format == 'json') {
-	header('Content-type: application/json');
-	echo json_encode(array('results_data'=>$results_data));
-} else {
-	header('Content-type: text/xml');
-	echo '<results>';
-	foreach($results_data as $key => $value) {
-		echo '<',$key,'>';
-		if(is_array($value)) {
-			foreach($value as $tag => $val) {
-				echo '<',$tag,'>',htmlentities($val),'</',$tag,'>';
-			}
-		} else {
-			echo $value;
-		}
-		echo '</',$key,'>';
-	}
-	echo '</results>';
-}
+/* output in json */
+header('Content-type: application/json');
+echo json_encode($results_data);
+//echo json_encode(array('results_data'=>$results_data));
 
 ?>

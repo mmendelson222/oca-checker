@@ -35,30 +35,9 @@ if(isset($_GET['ptin']) && isset($_GET['email'])) {
 	);
 }
 
-if (isset($_GET['format']))
-	$format = strtolower($_GET['format']) == 'json' ? 'json' : 'xml'; //xml is the default
-else
-	$format = 'xml';
-
-/* output in necessary format */
-if($format == 'json') {
-	header('Content-type: application/json');
-	echo json_encode(array('user_data'=>$user_data));
-} else {
-	header('Content-type: text/xml');
-	echo '<user_data>';
-	foreach($user_data as $key => $value) {
-		echo '<',$key,'>';
-		if(is_array($value)) {
-			foreach($value as $tag => $val) {
-				echo '<',$tag,'>',htmlentities($val),'</',$tag,'>';
-			}
-		} else {
-			echo $value;
-		}
-		echo '</',$key,'>';
-	}
-	echo '</user_data>';
-}
+/* output in json */
+header('Content-type: application/json');
+echo json_encode($user_data);
+//echo json_encode(array('user_data'=>$user_data));
 
 ?>
