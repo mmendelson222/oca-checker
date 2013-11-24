@@ -8,30 +8,34 @@ if(isset($_GET['ptin']) && isset($_GET['email'])) {
 		//issue valid token
 		$user_data =  array(
 			"valid" =>  'true', 
+			"authorized" => 'true', 
 			"token" => 501
 		);
 	} else if ($user_id == 'P00000001') {
 		//issue invalid token (for testing)
 		$user_data =  array(
 			"valid" =>  'true', 
+			"authorized" => 'true', 
 			"token" => 1
 		);
 	} else {
 		//invalid login
 		$user_data =  array(
-			"valid" =>  'false', 
+			"valid" =>  'true', 
+			"authorized" => 'false', 
 			"token" => 0
 		);
 	}
 }  else {
 	$user_data =  array(
 		"valid" => 'false', 
+		"authorized" => 'false', 
 		"error" => 'insufficient data',
 		"token" => 0
 	);
 }
-	
-if (isset($_GET['num'])) 
+
+if (isset($_GET['format']))
 	$format = strtolower($_GET['format']) == 'json' ? 'json' : 'xml'; //xml is the default
 else
 	$format = 'xml';
@@ -40,8 +44,7 @@ else
 if($format == 'json') {
 	header('Content-type: application/json');
 	echo json_encode(array('user_data'=>$user_data));
-}
-else {
+} else {
 	header('Content-type: text/xml');
 	echo '<user_data>';
 	foreach($user_data as $key => $value) {
