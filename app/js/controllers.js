@@ -15,7 +15,6 @@ angular.module('myApp.controllers', [])
 	 
  	$scope.logMeIn = function() { 
 		var result = lfactory.login($scope.userInfo); 
-		alert(result);
 	}
 
 	$scope.logMeOut = function() { 

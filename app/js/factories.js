@@ -17,8 +17,11 @@ factory('loginFactory', ['$http', 'userService', function(http, userService) {
 			//for testing - log in if both are valid.
             if (user['ptin'] && user['email']) { 
 				userService.isLogged = true;
+				alert("You're now logged in.");
 				return true; 
 			}
+			
+			alert("You are missing some information.");
 			return false;
         },
 
@@ -27,8 +30,8 @@ factory('loginFactory', ['$http', 'userService', function(http, userService) {
 		}, 
 		
 		isloggedin: function() {
-			alert('a');
-			return true;
+			alert("consulting isloggedin function");
+			return userService.isLogged;
 		}
     };
 }])

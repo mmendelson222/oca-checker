@@ -22,3 +22,8 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/invalid'});
 }]);
 
+//global functions
+function IsLoggedIn() {
+alert('ab');
+return true;
+}
