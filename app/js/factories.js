@@ -7,12 +7,13 @@
 angular.module('myApp.factories', []).
 
 //for checking the user's login
-factory('loginFactory', ['$http', $'userService', function($http, userService) {
+factory('loginFactory', ['$http', '$location', 'userService', function($http, $location, userService) {
 	return {
         login: function(user) {
 			if (userService.isLogged()) {
 				alert("You're already logged in");
-				return true;
+				$location.path("/check");
+				return;
 			}
 			
 			var $ptin=user['ptin'];
@@ -20,7 +21,7 @@ factory('loginFactory', ['$http', $'userService', function($http, userService) {
 			
 			if (!$ptin || !$email) {
 				alert("You are missing some information.");
-				return false;
+				return;
 			}
 
 			//note: this call is asynchronous.
@@ -32,6 +33,7 @@ factory('loginFactory', ['$http', $'userService', function($http, userService) {
 				userService.token = data['token'];
 				userService.ptin = $ptin;
 				alert("success");
+				$location.path("/check");
 			}).
 			error(function(data, status, headers, config) {
 				alert("error when connecting to the web service: "+status);
