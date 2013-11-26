@@ -2,15 +2,11 @@
 
 /* code related to login */
 angular.module('myApp.loginCode', [])
-  .controller('ctlLogin', ['$scope', 'loginFactory', function($scope, lfactory) {
-	 console.log("login controller"); 
+  .controller('ctlLogin', ['$scope', '$location', 'userService', 'loginFactory', function($scope, $location, userService, lfactory) {
 	 
 	$scope.ptnPTIN = /^\s*[Pp]\d{8}\s*$/
 	
-	$scope.userInfo = {
-         ptin: "",
-         email: "",
-     }
+	$scope.userInfo = userService, 
 	 
  	$scope.logMeIn = function() { 
 		var result = lfactory.login($scope.userInfo); 
@@ -20,6 +16,17 @@ angular.module('myApp.loginCode', [])
 		lfactory.logout(); 
 	}
 	
+	$scope.isLoggedIn =  function () { 
+		return lfactory.isloggedin();
+	}
+	
+	if (lfactory.isloggedin()) {
+		$location.path("/check");
+	}
+  }])
+  
+  //for logout link
+  .controller('ctlLoginIndicator', ['$scope', 'loginFactory', function($scope, lfactory) {
 	$scope.isLoggedIn =  function () { 
 		return lfactory.isloggedin();
 	}
@@ -69,7 +76,6 @@ angular.module('myApp.loginCode', [])
 		}, 
 		
 		isloggedin: function() {
-			console.log("consulting isloggedin function");
 			return userService.isLogged();
 		}
     };
