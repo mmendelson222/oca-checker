@@ -1,17 +1,19 @@
-<span ng-show="checkInfo.status == 'low'">
-<h2>Results - Unusually low revenue from cash and checks</h2>
-<p>Businesses of your type consistently report a larger portion of gross receipts from non-card sources, including cash and checks.  </p>
-<p>There are a number of reasons why revenue from cash and checks may appear unusually low.  Please review all information used in preparing your tax return to make sure you follow all posted instructions and fully report receipts from all sources, including payment card and non-card sources such as cash and checks. </p>
-</span>
+<span ng-switch="checkInfo.status">
+	<span ng-switch-when="low">
+		<h2>Results - Unusually low revenue from cash and checks</h2>
+		<p>Businesses of your type consistently report a larger portion of gross receipts from non-card sources, including cash and checks.  </p>
+		<p>There are a number of reasons why revenue from cash and checks may appear unusually low.  Please review all information used in preparing your tax return to make sure you follow all posted instructions and fully report receipts from all sources, including payment card and non-card sources such as cash and checks. </p>
+	</span>
 
-<span ng-show="checkInfo.status == 'typical'">
-<h2>Results - Typical revenue from cash and checks</h2>
-<p>Businesses of your type consistently report a similar portion of gross receipts from non-card sources, including cash and checks.  </p>
-</span>
+	<span ng-switch-when="typical">
+		<h2>Results - Typical revenue from cash and checks</h2>
+		<p>Businesses of your type consistently report a similar portion of gross receipts from non-card sources, including cash and checks.  </p>
+	</span>
 
-<span ng-model="checkInfo.status">
+	<div ng-switch-default>
+	Error or unrecognized value: {{checkInfo.status}}
+	</div>
 </span>
-
 
 <div class="btn-group">
 	<a class="btn btn-primary" href="/#/check">
