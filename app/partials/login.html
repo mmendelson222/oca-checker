@@ -9,7 +9,7 @@ If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTI
 	<label for="ptin"><abbr title="Preparer Tax Identification Number">PTIN</abbr></label>
 	</div>
 	<div>
-	<input type="text" name="ptin" ng-model="userInfo.ptin" ng-pattern="ptnPTIN" popover-trigger="focus" popover="The letter P, followed by 8 digits" required />   
+	<input type="text" name="ptin" ng-model="userInfo.ptin" ng-pattern="ptnPTIN" ng-maxlength="9" popover-trigger="focus" popover="The letter P, followed by 8 digits" required />   
 	<span class="error" ng-show="loginForm.ptin.$error.required">*</span>
 	<span class="error" ng-show="loginForm.ptin.$error.pattern">Enter a valid PTIN, starting with "P"</span>
 	</div>
@@ -28,14 +28,14 @@ If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTI
 	<button type="button" class="btn btn-primary" onclick="javascript:location.href='http://irs.gov'" >
 		< Return to IRS.GOV
 	</button>
-	<button type="button" class="btn btn-primary" ng-click="logMeIn()" >
+	<button type="submit" class="btn btn-primary" ng-click="logMeIn()" ng-disabled="!loginForm.$valid" >
 		Continue >
 	</button>
 </div>
 
 </form>
 
-<!-- 
+
 <div>
 debugging info: 
 <br/><b>ptin: {{userInfo.ptin}}</b> 
@@ -45,4 +45,4 @@ debugging info:
 <br/><b>{{loginForm.$error | json }}</b> 
 <pre>{{ userInfo | json }}</pre>
 </div>
--->
+<!-- -->

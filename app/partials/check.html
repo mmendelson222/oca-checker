@@ -6,7 +6,8 @@
 	<label for="mcc">4-digit Merchant Category Code (MCC)</label>
 	</div>
 	<div>
-	<input type="text" name="mcc" ng-model="checkInfo.mcc" ng-pattern="ptnMcc" />  
+	<input type="text" name="mcc" ng-model="checkInfo.mcc" ng-pattern="ptnMcc" required />  
+	<span class="error" ng-show="checkForm.mcc.$error.required">*</span>
 	<span class="error" ng-show="checkForm.mcc.$error.pattern">Enter a 4-digit MCC code</span> 
 	</div>
 
@@ -14,7 +15,8 @@
 	<label for="zip">5-digit ZIP code of business location</label>
 	</div>
 	<div>
-	<input type="text" name="zip" ng-model="checkInfo.zip" ng-pattern="ptnZip"    />   
+	<input type="text" name="zip" ng-model="checkInfo.zip" ng-pattern="ptnZip" required />   
+	<span class="error" ng-show="checkForm.zip.$error.required">*</span>
 	<span class="error" ng-show="checkForm.zip.$error.pattern">Enter a 5-digit ZIP code</span> 
 	</div>
 
@@ -22,26 +24,25 @@
 	<label for="receiptsCard">1099-K card receipts </label>
 	</div>
 	<div>
-	<input type="text" name="receiptsCard" ng-model="checkInfo.receiptsCard"  />   
+	<input type="text" name="receiptsCard" ng-model="checkInfo.receiptsCard" required />   
+	<span class="error" ng-show="checkForm.receiptsCard.$error.required">*</span>
 	</div>
 
 	<div>
 	<label for="receiptsTotal">Total Receipts </label>
 	</div>
 	<div>
-	<input type="text" name="receiptsTotal" ng-model="checkInfo.receiptsTotal"  />   
+	<input type="text" name="receiptsTotal" ng-model="checkInfo.receiptsTotal" required />   
+	<span class="error" ng-show="checkForm.receiptsTotal.$error.required">*</span>
 	</div>
 	 
 	<div>
 	<label for="transactionCount">Transaction Count </label>
 	</div>
 	<div>
-	<input type="text" name="transactionCount" ng-model="checkInfo.transactionCount"  />   
+	<input type="text" name="transactionCount" ng-model="checkInfo.transactionCount" required />   
+	<span class="error" ng-show="checkForm.transactionCount.$error.required">*</span>
 	</div>
-
-	<div ng-model="checkInfo.status">
-	</div>
-
 	
 </div>
 
@@ -49,7 +50,7 @@
 	<button type="button" class="btn btn-primary" onclick="javascript:window.history.back()" >
 			< Previous
 	</button>
-	<button type="button" class="btn btn-primary" ng-click="submitRequest()" >
+	<button type="button" class="btn btn-primary" ng-click="submitRequest()" ng-disabled="!checkForm.$valid" >
 			Continue
 	</button>
 </div>
