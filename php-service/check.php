@@ -36,9 +36,9 @@ if ($error) {
 } else {
 	$results_data['valid'] = 'true';
 	if (intval($_GET['mcc']) > 5000)
-		$results_data['result'] = 'normal';
+		$results_data['result'] = 'typicalX';
 	else
-		$results_data['result'] = 'low';
+		$results_data['result'] = 'lowX';
 }
 
 /* output in json */

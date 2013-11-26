@@ -37,7 +37,7 @@ angular.module('myApp.loginCode', [])
 	return {
         login: function(user) {
 			if (userService.isLogged()) {
-				alert("You're already logged in");
+				alert("You're already logged in");  //should never get here based on redirect.
 				$location.path("/check");
 				return;
 			}
@@ -46,7 +46,7 @@ angular.module('myApp.loginCode', [])
 			var $email=user['email'];
 			
 			if (!$ptin || !$email) {
-				alert("You are missing some information.");
+				alert("You are missing some information.");  //should never get here based on validation
 				return;
 			}
 
@@ -56,10 +56,9 @@ angular.module('myApp.loginCode', [])
 				url: "/svc/login.php?ptin=" + $ptin + "&email=" + $email
 			}).
 			success(function(data, status, headers, config) {
-				if (data['authorized']) {
-					userService.token = data['token'];
+				if (data['authorized'] == 'true') {
+					userService.logMeIn(data['token']);
 					userService.ptin = $ptin;
-					alert("authorized");
 					$location.path("/check");
 				} else {
 					alert("not authorized");
@@ -71,8 +70,7 @@ angular.module('myApp.loginCode', [])
         },
 
 		logout: function() {
-			userService.token = 0;
-			userService.ptin = '';
+			userService.logMeOut();
 		}, 
 		
 		isloggedin: function() {
@@ -87,8 +85,17 @@ angular.module('myApp.loginCode', [])
 		isLogged: function() {
 			return oUser.token;
 		},
+		logMeIn: function(myToken) {
+			oUser.token = myToken;
+		},
+		logMeOut: function(myToken) {
+			oUser.token = 0;
+			oUser.ptin = '';
+			oUser.email = ''
+		},
 		token: 0,
-		ptin: ''
+		ptin: '',
+		email: ''
 	};
 	return oUser;
 }]);

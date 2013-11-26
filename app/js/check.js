@@ -2,16 +2,19 @@
 
 /* code related to merchant income check */
 angular.module('myApp.checkCode', [])
-  .controller('ctlCheckReceipts', ['$scope', 'requestService', 'checkFactory', function($scope, requestService, cFactory) {
+  .controller('ctlCheckReceipts', ['$scope', '$location', 'requestService', 'checkFactory', 'loginFactory', function($scope, $location, requestService, cFactory, lfactory) {
 
-		$scope.ptnMcc = /^\s*\d{4}\s*$/
-		$scope.ptnZip = /^\s*\d{5}\s*$/
-  
-		//probably not needed.
-		$scope.checkInfo = requestService,
+	$scope.ptnMcc = /^\s*\d{4}\s*$/
+	$scope.ptnZip = /^\s*\d{5}\s*$/
+
+	$scope.checkInfo = requestService,
 	 
 	$scope.submitRequest = function() { 
 		cFactory.check($scope.checkInfo);
+	}
+	
+	if (!lfactory.isloggedin()) {
+		$location.path("/login");
 	}
   }])
   
@@ -32,23 +35,21 @@ angular.module('myApp.checkCode', [])
 			success(function(data, status, headers, config) {
 				if (headers('content-type') === "application/json") {
 					if (data['valid'] == 'true') {
-						alert(data['result']);
-						status = data['result'];
+						checkInfo.status = data['result'];
 					} else {
-						alert(data['error']);
-						status = data['error'];
+						checkInfo.status = data['error'];
 					}
 				} else {
 					//indicates an error.
-					alert(data);
-					status = data;
+					checkInfo.status = "Web service failure: " + data;
 				}
+				
+				$location.path("/results");
 			}).
 			error(function(data, status, headers, config) {
-				alert("error when connecting to the web service: "+status);
+				alert("Web service connection error:  "+status);
 			})
-        }, 
-		status: ""
+        }
     };
 }])
 //for storing user information
@@ -58,7 +59,8 @@ angular.module('myApp.checkCode', [])
 			 zip: "",
 			 receiptsCard: "",
 			 receiptsTotal: "",
-			 transactionCount: ""
+			 transactionCount: "",
+			 status: ""
 		};
 	return oRequest;
 }])

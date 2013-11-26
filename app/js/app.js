@@ -14,7 +14,7 @@ angular.module('myApp', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'ctlLogin'});
   $routeProvider.when('/check', {templateUrl: 'partials/check.html', controller: 'ctlCheckReceipts'});
-  $routeProvider.when('/results', {templateUrl: 'partials/results.html'});
+  $routeProvider.when('/results', {templateUrl: 'partials/results.html', controller: 'ctlCheckReceipts'});
   $routeProvider.when('/print', {templateUrl: 'partials/print.html'});
   $routeProvider.when('/help', {templateUrl: 'partials/help.html'});
   $routeProvider.when('/exit', {templateUrl: 'partials/exit.html'});
@@ -22,8 +22,3 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/invalid'});
 }]);
 
-//global functions
-function IsLoggedIn() {
-alert('ab');
-return true;
-}
