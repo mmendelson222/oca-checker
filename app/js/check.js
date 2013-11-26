@@ -2,19 +2,13 @@
 
 /* code related to merchant income check */
 angular.module('myApp.checkCode', [])
-  .controller('ctlCheckReceipts', ['$scope', 'checkFactory', function($scope, cFactory) {
+  .controller('ctlCheckReceipts', ['$scope', 'requestService', 'checkFactory', function($scope, requestService, cFactory) {
 
 		$scope.ptnMcc = /^\s*\d{4}\s*$/
 		$scope.ptnZip = /^\s*\d{5}\s*$/
   
 		//probably not needed.
-		$scope.checkInfo = {
-			 mcc: "",
-			 zip: "",
-			 receiptsCard: "",
-			 receiptsTotal: "",
-			 transactionCount: ""
-		}
+		$scope.checkInfo = requestService,
 	 
 	$scope.submitRequest = function() { 
 		cFactory.check($scope.checkInfo);
@@ -56,4 +50,16 @@ angular.module('myApp.checkCode', [])
         }, 
 		status: ""
     };
-}]);
+}])
+//for storing user information
+.factory('requestService', [function() {
+	var oRequest = {
+			 mcc: "",
+			 zip: "",
+			 receiptsCard: "",
+			 receiptsTotal: "",
+			 transactionCount: ""
+		};
+	return oRequest;
+}])
+;
