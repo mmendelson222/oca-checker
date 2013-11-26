@@ -7,8 +7,8 @@ angular.module('myApp', [
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
-  'myApp.controllers',
-  'myApp.factories',
+  'myApp.loginCode',
+  'myApp.checkCode',
   'ui.bootstrap'
 ]).
 config(['$routeProvider', function($routeProvider) {

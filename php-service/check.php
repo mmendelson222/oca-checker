@@ -21,8 +21,6 @@ if(!isset($_GET['receiptsTotal']))
 if(!isset($_GET['transactionCount'])) 
 	$error .= "transactionCount ";
 
-	var asdf $_GET['asdf'];
-	
 //check for invalid data. 
 
 if ($error) {

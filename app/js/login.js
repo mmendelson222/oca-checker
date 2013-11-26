@@ -1,13 +1,32 @@
 'use strict';
 
-/* Factories */
+/* code related to login */
+angular.module('myApp.loginCode', [])
+  .controller('ctlLogin', ['$scope', 'loginFactory', function($scope, lfactory) {
+	 console.log("login controller"); 
+	 
+	$scope.ptnPTIN = /^\s*[Pp]\d{8}\s*$/
+	
+	$scope.userInfo = {
+         ptin: "",
+         email: "",
+     }
+	 
+ 	$scope.logMeIn = function() { 
+		var result = lfactory.login($scope.userInfo); 
+	}
 
-//returns a service
-
-angular.module('myApp.factories', []).
-
+	$scope.logMeOut = function() { 
+		lfactory.logout(); 
+	}
+	
+	$scope.isLoggedIn =  function () { 
+		return lfactory.isloggedin();
+	}
+  }])
+  
 //for checking the user's login
-factory('loginFactory', ['$http', '$location', 'userService', function($http, $location, userService) {
+.factory('loginFactory', ['$http', '$location', 'userService', function($http, $location, userService) {
 	return {
         login: function(user) {
 			if (userService.isLogged()) {
@@ -55,44 +74,7 @@ factory('loginFactory', ['$http', '$location', 'userService', function($http, $l
 		}
     };
 }])
-
-//for submitting the request.
-.factory('checkFactory', ['$http', '$location', 'userService', function($http, $location, userService) {
-	return {
-        check: function(checkInfo) {
-
-			//note: this call is asynchronous.
-			$http({
-				method: 'GET', 
-				url: "/svc/check.php?token=" + userService['token'] + 
-					"&mcc=" + checkInfo['mcc'] +
-					"&receiptsCard=" + checkInfo['receiptsCard'] +
-					"&receiptsTotal=" +  checkInfo['receiptsTotal'] +
-					"&transactionCount=" + checkInfo['transactionCount']
-			}).
-			success(function(data, status, headers, config) {
-				if (Array.isArray(data)) {
-					if (data['valid'] == 'true') {
-						alert(data['result']);
-						status = data['result'];
-					} else {
-						alert(data['error']);
-						status = data['error'];
-					}
-				} else {
-					//indicates an error.
-					alert(data);
-					status = data;
-				}
-			}).
-			error(function(data, status, headers, config) {
-				alert("error when connecting to the web service: "+status);
-			})
-        }, 
-		status: ""
-    };
-}])
-
+  
 //for storing user information
 .factory('userService', [function() {
 	var oUser = {
@@ -104,8 +86,3 @@ factory('loginFactory', ['$http', '$location', 'userService', function($http, $l
 	};
 	return oUser;
 }]);
-
-
-
-  
-
