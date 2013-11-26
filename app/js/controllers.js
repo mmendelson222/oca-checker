@@ -3,10 +3,9 @@
 /* Controllers */
 angular.module('myApp.controllers', [])
   .controller('ctlLogin', ['$scope', 'loginFactory', function($scope, lfactory) {
+	 console.log("login controller"); 
 	 
 	$scope.ptnPTIN = /^\s*[Pp]\d{8}\s*$/
-	 
-	//$scope.ptnWord = /^\s*\w*\s*$/
 	
 	$scope.userInfo = {
          ptin: "",
@@ -18,16 +17,15 @@ angular.module('myApp.controllers', [])
 	}
 
 	$scope.logMeOut = function() { 
-		var result = lfactory.logout(); 
+		lfactory.logout(); 
 	}
 	
-	$scope.isLoggedIn = function() { 
-		return lfactory.loggedin(); 
+	$scope.isLoggedIn =  function () { 
+		return lfactory.isloggedin();
 	}
-
   }])
   
-  .controller('ctlCheckReceipts', ['$scope', function($scope) {
+  .controller('ctlCheckReceipts', ['$scope', 'checkFactory', function($scope, cFactory) {
 
 		$scope.ptnMcc = /^\s*\d{4}\s*$/
 		$scope.ptnZip = /^\s*\d{5}\s*$/
@@ -39,10 +37,9 @@ angular.module('myApp.controllers', [])
 			 receiptsCard: "",
 			 receiptsTotal: "",
 			 transactionCount: ""
-		 }
+		}
 	 
 	$scope.submitRequest = function() { 
-		alert("hoook me up!");
+		cFactory.check($scope.checkInfo);
 	}
-  }])
-  ;
+  }]);

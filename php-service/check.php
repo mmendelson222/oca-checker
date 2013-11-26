@@ -21,6 +21,8 @@ if(!isset($_GET['receiptsTotal']))
 if(!isset($_GET['transactionCount'])) 
 	$error .= "transactionCount ";
 
+	var asdf $_GET['asdf'];
+	
 //check for invalid data. 
 
 if ($error) {
@@ -36,9 +38,9 @@ if ($error) {
 } else {
 	$results_data['valid'] = 'true';
 	if (intval($_GET['mcc']) > 5000)
-		$results_data['result'] = 'true';
+		$results_data['result'] = 'normal';
 	else
-		$results_data['result'] = 'false';
+		$results_data['result'] = 'low';
 }
 
 /* output in json */

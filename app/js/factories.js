@@ -30,10 +30,14 @@ factory('loginFactory', ['$http', '$location', 'userService', function($http, $l
 				url: "/svc/login.php?ptin=" + $ptin + "&email=" + $email
 			}).
 			success(function(data, status, headers, config) {
-				userService.token = data['token'];
-				userService.ptin = $ptin;
-				alert("success");
-				$location.path("/check");
+				if (data['authorized']) {
+					userService.token = data['token'];
+					userService.ptin = $ptin;
+					alert("authorized");
+					$location.path("/check");
+				} else {
+					alert("not authorized");
+				}
 			}).
 			error(function(data, status, headers, config) {
 				alert("error when connecting to the web service: "+status);
@@ -46,24 +50,60 @@ factory('loginFactory', ['$http', '$location', 'userService', function($http, $l
 		}, 
 		
 		isloggedin: function() {
-			alert("consulting isloggedin function");
+			console.log("consulting isloggedin function");
 			return userService.isLogged();
 		}
     };
 }])
 
+//for submitting the request.
+.factory('checkFactory', ['$http', '$location', 'userService', function($http, $location, userService) {
+	return {
+        check: function(checkInfo) {
+
+			//note: this call is asynchronous.
+			$http({
+				method: 'GET', 
+				url: "/svc/check.php?token=" + userService['token'] + 
+					"&mcc=" + checkInfo['mcc'] +
+					"&receiptsCard=" + checkInfo['receiptsCard'] +
+					"&receiptsTotal=" +  checkInfo['receiptsTotal'] +
+					"&transactionCount=" + checkInfo['transactionCount']
+			}).
+			success(function(data, status, headers, config) {
+				if (Array.isArray(data)) {
+					if (data['valid'] == 'true') {
+						alert(data['result']);
+						status = data['result'];
+					} else {
+						alert(data['error']);
+						status = data['error'];
+					}
+				} else {
+					//indicates an error.
+					alert(data);
+					status = data;
+				}
+			}).
+			error(function(data, status, headers, config) {
+				alert("error when connecting to the web service: "+status);
+			})
+        }, 
+		status: ""
+    };
+}])
+
 //for storing user information
 .factory('userService', [function() {
-	var sdo = {
+	var oUser = {
 		isLogged: function() {
-			return sdo.token;
+			return oUser.token;
 		},
 		token: 0,
 		ptin: ''
 	};
-	return sdo;
+	return oUser;
 }]);
-
 
 
 
