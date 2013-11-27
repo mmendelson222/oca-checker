@@ -12,6 +12,7 @@ angular.module('myApp', [
   'ui.bootstrap'
 ]).
 config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/', {templateUrl: 'partials/login.html', controller: 'ctlLogin'});
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'ctlLogin'});
   $routeProvider.when('/check', {templateUrl: 'partials/check.html', controller: 'ctlCheckReceipts'});
   $routeProvider.when('/results', {templateUrl: 'partials/results.html', controller: 'ctlCheckReceipts'});

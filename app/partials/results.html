@@ -1,4 +1,4 @@
-<span ng-switch="checkInfo.status">
+<span ng-switch="checkInfo.status" class="floatleft">
 	<span ng-switch-when="low">
 		<h2>Results - Unusually low revenue from cash and checks</h2>
 		<p>Businesses of your type consistently report a larger portion of gross receipts from non-card sources, including cash and checks.  </p>
@@ -13,6 +13,17 @@
 	<div ng-switch-default>
 	Error or unrecognized value: {{checkInfo.status}}
 	</div>
+</span>
+
+<span class="floatright">
+    <table>
+        <tr><th>Inputs - You entered:</th></tr>
+        <tr><td>MCC - {{checkInfo.mcc}}</td></tr>
+        <tr><td>Zip Code - {{checkInfo.zip}}</td></tr>
+        <tr><td>Merchant card receipts - {{checkInfo.receiptsCard | currency}}</td></tr>
+        <tr><td>Total receipts - {{checkInfo.receiptsTotal | currency}}</td></tr>
+        <tr><td>Transaction count - {{checkInfo.transactionCount}}</td></tr>
+    </table>
 </span>
 
 <div class="btn-group">
