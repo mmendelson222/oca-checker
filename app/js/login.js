@@ -80,20 +80,22 @@ angular.module('myApp.loginCode', [])
 }])
   
 //for storing user information
-.factory('userService', [function() {
+.factory('userService', ['$cookieStore', function($cookieStore) {
 	var oUser = {
 		isLogged: function() {
 			return oUser.token;
 		},
 		logMeIn: function(myToken) {
 			oUser.token = myToken;
+            $cookieStore.put("token", myToken);
 		},
-		logMeOut: function(myToken) {
+		logMeOut: function() {
 			oUser.token = 0;
 			oUser.ptin = '';
 			oUser.email = ''
+            $cookieStore.remove("token");
 		},
-		token: 0,
+		token:  $cookieStore.get("token"),
 		ptin: '',
 		email: ''
 	};
