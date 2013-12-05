@@ -34,3 +34,39 @@
 
 .floatleft {float: left;}
 .floatright {float: right;}
+
+.stepLinks {width:580px}
+.stepLinks td {text-align: center}
+
+h1 {font-weight: normal;
+    color: #666;
+    font-size: 1.75em;
+}
+h2 {font-weight: normal;
+    color: #325dff;
+    font-size: 1.25em;
+}
+
+/* see http://getbootstrap.com/2.3.2/scaffolding.html#responsive */
+/* Large desktop */
+@media (min-width: 1200px) {}
+
+/* Portrait tablet and greater */
+@media (min-width: 768px) {
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.4;
+    }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    h1 {font-size: 1.5em;}
+    h2 {font-size: 1.25em;}
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {  }
+

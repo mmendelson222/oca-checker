@@ -1,8 +1,11 @@
+<div class="hidden-phone">
+    <div ng-include="'partials/progress.html'" onload="step='1'"></div>
+</div>
 <h2>User Verification</h2>
-Use of this tool is currently limited to return preparers possessing a Preparer Tax Identification Number (PTIN). 
+Use of this tool is currently limited to return preparers possessing a Preparer Tax Identification Number (PTIN).
 <br/>
 If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTIN-Top-FAQ-3">register for a PTIN</a> to use this tool. 
-
+asdf
 <form name="loginForm">  <!-- form is present to access errors -->
 <div>
 	<div>
@@ -37,8 +40,7 @@ If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTI
 
 <div ng-if="false">
 debugging info: 
-<br/><b>ptin: {{userInfo.ptin}}</b> 
-<br/><b>{{loginForm.ptin.$error | json }}</b> 
+<br/><b>ptin: {{userInfo.ptin}}</b> <br/><b>{{loginForm.ptin.$error | json }}</b>
 <br/><b>email: {{userInfo.email}}</b> 
 <br/><b>{{loginForm.email.$error | json }}</b> 
 <br/><b>{{loginForm.$error | json }}</b> 

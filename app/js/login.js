@@ -27,11 +27,12 @@ angular.module('myApp.loginCode', [])
   
   //for logout link
   .controller('ctlLoginIndicator', ['$scope', 'loginFactory', function($scope, lfactory) {
-	$scope.isLoggedIn =  function () { 
+	$scope.isLoggedIn =  function () {
 		return lfactory.isloggedin();
 	}
   }])
-  
+
+
 //for checking the user's login
 .factory('loginFactory', ['$http', '$location', 'userService', function($http, $location, userService) {
 	return {
@@ -67,6 +68,7 @@ angular.module('myApp.loginCode', [])
 			error(function(data, status, headers, config) {
 				alert("error when connecting to the web service: "+status);
 			})
+
         },
 
 		logout: function() {
@@ -76,6 +78,7 @@ angular.module('myApp.loginCode', [])
 		isloggedin: function() {
 			return userService.isLogged();
 		}
+
     };
 }])
   
