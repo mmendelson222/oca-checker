@@ -1,7 +1,7 @@
 <div class="hidden-phone">
     <div ng-include="'partials/progress.html'" onload="step='3'"></div>
 </div>
-<span ng-switch="checkInfo.status" class="floatleft">
+<span ng-switch="checkInfo.status" class="contentLeft">
 	<span ng-switch-when="low">
 		<h2>Results - Unusually low revenue from cash and checks</h2>
 		<p>Businesses of your type consistently report a larger portion of gross receipts from non-card sources, including cash and checks.  </p>
@@ -12,13 +12,16 @@
 		<h2>Results - Typical revenue from cash and checks</h2>
 		<p>Businesses of your type consistently report a similar portion of gross receipts from non-card sources, including cash and checks.  </p>
 	</span>
-
+    <span ng-switch-when="error">
+		<h2>Calculation error</h2>
+		<p>{{checkInfo.errorMessage}} </p>
+	</span>
 	<div ng-switch-default>
-	Error or unrecognized value: {{checkInfo.status}}
-	</div>
+	Error: {{checkInfo.status}} {{checkInfo.errorMessage}}
+    </div>
 </span>
 
-<span class="floatright">
+<span class="inputsRight">
     <table>
         <tr><th>Inputs - You entered:</th></tr>
         <tr><td>MCC - {{checkInfo.mcc}}</td></tr>

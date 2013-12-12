@@ -36,14 +36,42 @@ app.listen(process.env.PORT || 3000);
 function calculate(req, res, now) {
     if (!now) res.writeHead(200, { "Content-Type": "application/json" });
     if (!req.session.authenticate) {
-        res.end(JSON.stringify({ status: false, errorMessage: "No session or session timed out.", servertime: new Date()}));
+        res.end(JSON.stringify({ status: "error", errorMessage: "No session or session timed out.", servertime: new Date()}));
         return;
     }
 
-	//res.end(JSON.stringify({ status: false, errorMessage: "Number of checker calls exceeds the maximum  " + OneMinuteCalls + " calls per minute.", servertime: new_now }));
+    if (!req.body.receiptsCard || !req.body.receiptsTotal || !req.body.transactionCount || !req.body.mcc || !req.body.zip) {
+        res.end(JSON.stringify({ status: "error", errorMessage: "At least one parameter is missing.", servertime: new Date()}));
+        return;
+    }
 
-    res.end(JSON.stringify({ status: true, result: "100.00", servertime: new Date() }));
-    //res.end(JSON.stringify({ status: false, errorMessage: err.message, servertime: new Date() }));
+	//res.end(JSON.stringify({ success: false, errorMessage: "Number of checker calls exceeds the maximum  " + OneMinuteCalls + " calls per minute.", servertime: new_now }));
+
+    res.end(JSON.stringify({ status: "typical", servertime: new Date() }));
+    //res.end(JSON.stringify({ success: false, errorMessage: err.message, servertime: new Date() }));
+}
+
+function authenticate(req, res) {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    req.session.authenticate = false;
+    req.session.ptin = null;
+    var falseString = JSON.stringify({ authenticated: false, servertime: new Date() });
+    if (!req.body.ptin || !req.body.code) {
+        res.end(falseString);
+        return;
+    }
+    if (req.body.ptin == '' || req.body.code == '') {
+        res.end(falseString);
+        return;
+    }
+    if (req.body.ptin == 'P00000000') {
+        //YES
+        req.session.authenticate = true;
+        req.session.ptin = req.body.ptin;
+        res.end(JSON.stringify({ authenticated: true, servertime: new Date() }));
+    } else {
+        res.end(falseString);
+    }
 }
 
 function LogVisit(req) {
@@ -65,25 +93,4 @@ function LogVisit(req) {
     console.log(logContent);
 }
 
-function authenticate(req, res) {
-    res.writeHead(200, { "Content-Type": "application/json" });
-	req.session.authenticate = false;
-    req.session.ptin = null;
-    var falseString = JSON.stringify({ authenticated: false, servertime: new Date() });
-    if (!req.body.ptin || !req.body.code) {
-        res.end(falseString);
-        return;
-    }
-    if (req.body.ptin == '' || req.body.code == '') {
-        res.end(falseString);
-        return;
-    }
-    if (req.body.ptin == 'P00000000') {
-        //YES
-        req.session.authenticate = true;
-        req.session.ptin = req.body.ptin;
-        res.end(JSON.stringify({ authenticated: true, servertime: new Date() }));
-    } else {
-        res.end(falseString);
-    }
-}
+

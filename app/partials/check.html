@@ -6,19 +6,19 @@
 <form name="checkForm">  <!-- form is present to access errors -->
 <div>
 	<div>
-	<label for="mcc">4-digit Merchant Category Code (MCC)</label>
+	<label for="mcc">3-digit Merchant Category Code (MCC)</label>
 	</div>
 	<div>
-	<input type="text" name="mcc" ng-model="checkInfo.mcc" ng-pattern="ptnMcc" required />  
+	<input type="text" name="mcc" ng-model="checkInfo.mcc" ng-pattern="ptnMcc" maxlength="3" required />
 	<span class="error" ng-show="checkForm.mcc.$error.required">*</span>
-	<span class="error" ng-show="checkForm.mcc.$error.pattern">Enter a 4-digit MCC code</span> 
+	<span class="error" ng-show="checkForm.mcc.$error.pattern">Enter a 3-digit MCC code</span>
 	</div>
 
 	<div>
 	<label for="zip">5-digit ZIP code of business location</label>
 	</div>
 	<div>
-	<input type="text" name="zip" ng-model="checkInfo.zip" ng-pattern="ptnZip" required />   
+	<input type="text" name="zip" ng-model="checkInfo.zip" ng-pattern="ptnZip" maxlength="5" required />
 	<span class="error" ng-show="checkForm.zip.$error.required">*</span>
 	<span class="error" ng-show="checkForm.zip.$error.pattern">Enter a 5-digit ZIP code</span> 
 	</div>
@@ -53,7 +53,7 @@
 	<button type="button" class="btn btn-primary" onclick="javascript:window.history.back()" >
 			< Previous
 	</button>
-	<button type="button" class="btn btn-primary" ng-click="submitRequest()" ng-disabled="!checkForm.$valid" >
+	<button type="submit" class="btn btn-primary" ng-click="submitRequest()" ng-disabled="!checkForm.$valid" >
 			Continue
 	</button>
 </div>

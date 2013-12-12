@@ -35,6 +35,9 @@
 .floatleft {float: left;}
 .floatright {float: right;}
 
+.contentLeft {float: left;}
+.inputRight {float: left; width:200px}
+
 .stepLinks {width:580px}
 .stepLinks td {text-align: center}
 

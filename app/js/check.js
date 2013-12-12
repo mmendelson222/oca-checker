@@ -4,7 +4,7 @@
 angular.module('myApp.checkCode', [])
   .controller('ctlCheckReceipts', ['$scope', '$location', 'requestService', 'checkFactory', 'loginFactory', function($scope, $location, requestService, cFactory, lfactory) {
 
-	$scope.ptnMcc = /^\s*\d{4}\s*$/
+	$scope.ptnMcc = /^\s*\d{3}\s*$/
 	$scope.ptnZip = /^\s*\d{5}\s*$/
 
 	$scope.checkInfo = requestService,
@@ -24,30 +24,29 @@ angular.module('myApp.checkCode', [])
         check: function(checkInfo) {
 
 			//note: this call is asynchronous.
-			$http({
-				method: 'GET', 
-				url: "/svc/check.php?token=" + userService['token'] + 
-					"&mcc=" + checkInfo['mcc'] +
-					"&receiptsCard=" + checkInfo['receiptsCard'] +
-					"&receiptsTotal=" +  checkInfo['receiptsTotal'] +
-					"&transactionCount=" + checkInfo['transactionCount']
-			}).
-			success(function(data, status, headers, config) {
+			$http.post("/service/calculate", checkInfo).
+        	success(function(data, httpstatus, headers, config) {
 				if (headers('content-type') === "application/json") {
-					if (data['valid'] == 'true') {
-						checkInfo.status = data['result'];
-					} else {
-						checkInfo.status = data['error'];
-					}
+                    checkInfo.status = data['status'];
+                    switch(checkInfo.status) {
+                        case 'low':
+                        case 'typical':
+                            break;
+                        default:
+                            checkInfo.status = "error";
+                            checkInfo.errorMessage = data['errorMessage'];
+                    }
 				} else {
 					//indicates an error.
-					checkInfo.status = "Web service failure: " + data;
+					checkInfo.status = "error";
+                    checkInfo.errorMessage = "Web service failure: " + data;
 				}
 				
 				$location.path("/results");
 			}).
 			error(function(data, status, headers, config) {
-				alert("Web service connection error:  "+status);
+                    checkInfo.status = "error";
+                    checkInfo.errorMessage = "Web service connection error:  "+status;
 			})
         }
     };

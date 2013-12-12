@@ -56,7 +56,6 @@ angular.module('myApp.loginCode', [])
 			error(function(data, status, headers, config) {
 				alert("error when connecting to the web service: "+status);
 			})
-
         },
 
 		logout: function() {
