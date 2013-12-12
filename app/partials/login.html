@@ -5,7 +5,7 @@
 Use of this tool is currently limited to return preparers possessing a Preparer Tax Identification Number (PTIN).
 <br/>
 If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTIN-Top-FAQ-3">register for a PTIN</a> to use this tool. 
-asdf
+
 <form name="loginForm">  <!-- form is present to access errors -->
 <div>
 	<div>
@@ -25,6 +25,13 @@ asdf
 	<span class="error" ng-show="loginForm.email.$error.email">Enter a properly formatted email address.</span>
 	</div>
 
+    <div>
+        <label for="invitation">Invitation Code</label>
+    </div>
+    <div>
+        <input type="text" name="invitation" ng-model="userInfo.invitation" required />
+        <span class="error" ng-show="loginForm.invitation.$error.required">*</span>
+    </div>
 </div>
 
 <div class="btn-group">

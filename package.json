@@ -1,8 +1,9 @@
 {
-  "name": "angularjs-seed",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "name": "tgov-ocachecker",
+  "description": "Code for the oca checker program - based on angular seed",
+  "repository": "https://github.com/mmendelson222/oca-checker.git",
   "devDependencies": {
+	"express": "3.4.7",
     "phantomjs" : "~1.9",
     "karma" : "~0.10",
     "karma-junit-reporter" : "~0.1",

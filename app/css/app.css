@@ -47,7 +47,9 @@ h2 {font-weight: normal;
     font-size: 1.25em;
 }
 
-/* see http://getbootstrap.com/2.3.2/scaffolding.html#responsive */
+/* see http://getbootstrap.com/2.3.2/scaffolding.html#responsive
+note that the following styles correspond to the breakpoints set in bootstrap-responsive.css*/
+
 /* Large desktop */
 @media (min-width: 1200px) {}
 
@@ -68,5 +70,28 @@ h2 {font-weight: normal;
 }
 
 /* Landscape phones and down */
-@media (max-width: 480px) {  }
+@media (max-width: 480px) {
+    form > div {
+        margin: 0 0 15px 0;
+    }
+    form > div > label,
+    legend {
+        width: 100%;
+        float: none;
+        margin: 0 0 5px 0;
+    }
+    form > div > div,
+    form > div > fieldset > div {
+        width: 100%;
+        float: none;
+    }
+    input[type=text],
+    input[type=email],
+    input[type=url],
+    input[type=password],
+    textarea,
+    select {
+        width: 100%;
+    }
+}
 

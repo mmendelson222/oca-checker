@@ -58,7 +58,7 @@ angular.module('myApp.loginCode', [])
 			}).
 			success(function(data, status, headers, config) {
 				if (data['authorized'] == 'true') {
-					userService.logMeIn(data['token']);
+					userService.logMeIn();
 					userService.ptin = $ptin;
 					$location.path("/check");
 				} else {
@@ -86,21 +86,22 @@ angular.module('myApp.loginCode', [])
 .factory('userService', ['$cookieStore', function($cookieStore) {
 	var oUser = {
 		isLogged: function() {
-			return oUser.token;
+			return oUser.authenticated;
 		},
-		logMeIn: function(myToken) {
-			oUser.token = myToken;
-            $cookieStore.put("token", myToken);
+		logMeIn: function() {
+			oUser.authenticated=true;
+            $cookieStore.put("authenticated", true);
 		},
 		logMeOut: function() {
-			oUser.token = 0;
+            oUser.authenticated=false;
 			oUser.ptin = '';
 			oUser.email = ''
-            $cookieStore.remove("token");
+            $cookieStore.remove("authenticated");
 		},
-		token:  $cookieStore.get("token"),
+		authenticated:  $cookieStore.get("authenticated"),
 		ptin: '',
-		email: ''
+		email: '',
+        invitation: ''
 	};
 	return oUser;
 }]);
