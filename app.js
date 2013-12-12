@@ -86,5 +86,4 @@ function authenticate(req, res) {
     } else {
         res.end(falseString);
     }
-	res.end(JSON.stringify({ authenticated: true, servertime: new Date() }));
 }
