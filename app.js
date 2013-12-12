@@ -70,15 +70,15 @@ function authenticate(req, res) {
 	req.session.authenticate = false;
     req.session.ptin = null;
     var falseString = JSON.stringify({ authenticated: false, servertime: new Date() });
-    if (!req.body.ptin || !req.body.email) {
+    if (!req.body.ptin || !req.body.code) {
         res.end(falseString);
         return;
     }
-    if (req.body.ptin == '' || req.body.email == '') {
+    if (req.body.ptin == '' || req.body.code == '') {
         res.end(falseString);
         return;
     }
-    if ($user_id == 'P00000000') {
+    if (req.body.ptin == 'P00000000') {
         //YES
         req.session.authenticate = true;
         req.session.ptin = req.body.ptin;

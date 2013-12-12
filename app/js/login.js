@@ -42,27 +42,15 @@ angular.module('myApp.loginCode', [])
 				$location.path("/check");
 				return;
 			}
-			
-			var $ptin=user['ptin'];
-			var $email=user['email'];
-			
-			if (!$ptin || !$email) {
-				alert("You are missing some information.");  //should never get here based on validation
-				return;
-			}
 
 			//note: this call is asynchronous.
-			$http({
-				method: 'GET', 
-				url: "/svc/login.php?ptin=" + $ptin + "&email=" + $email
-			}).
+			$http.post("/service/authenticate", user).
 			success(function(data, status, headers, config) {
-				if (data['authorized'] == 'true') {
+				if (data['authenticated'] == true) {
 					userService.logMeIn();
-					userService.ptin = $ptin;
 					$location.path("/check");
 				} else {
-					alert("not authorized");
+					alert("not authenticated");
 				}
 			}).
 			error(function(data, status, headers, config) {
@@ -95,13 +83,14 @@ angular.module('myApp.loginCode', [])
 		logMeOut: function() {
             oUser.authenticated=false;
 			oUser.ptin = '';
-			oUser.email = ''
+			oUser.email = '';
+            oUser.code = '';
             $cookieStore.remove("authenticated");
 		},
 		authenticated:  $cookieStore.get("authenticated"),
 		ptin: '',
 		email: '',
-        invitation: ''
+        code: ''
 	};
 	return oUser;
 }]);

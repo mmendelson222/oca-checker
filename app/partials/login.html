@@ -20,17 +20,17 @@ If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTI
 	<div>
 	<label for="email">Email Address</label>
 	</div>
-	<div><input name="email" type="email" ng-model="userInfo.email" required />  
+	<div><input name="email" type="email" ng-model="userInfo.email" />
 	<span class="error" ng-show="loginForm.email.$error.required">*</span>
 	<span class="error" ng-show="loginForm.email.$error.email">Enter a properly formatted email address.</span>
 	</div>
 
     <div>
-        <label for="invitation">Invitation Code</label>
+        <label for="code">Invitation Code</label>
     </div>
     <div>
-        <input type="text" name="invitation" ng-model="userInfo.invitation" required />
-        <span class="error" ng-show="loginForm.invitation.$error.required">*</span>
+        <input type="text" name="code" ng-model="userInfo.code" required />
+        <span class="error" ng-show="loginForm.code.$error.required">*</span>
     </div>
 </div>
 
