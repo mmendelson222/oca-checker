@@ -41,13 +41,21 @@ function calculate(req, res, now) {
     }
 
     if (!req.body.receiptsCard || !req.body.receiptsTotal || !req.body.transactionCount || !req.body.mcc || !req.body.zip) {
-        res.end(JSON.stringify({ status: "error", errorMessage: "At least one parameter is missing.", servertime: new Date()}));
+        res.end(JSON.stringify({ status: "error", errorMessage: "At least one input item is missing.", servertime: new Date()}));
         return;
+    }
+
+    if (req.body.mcc == 0) {
+        res.end(JSON.stringify({ status: "error", errorMessage: "Error message for testing purposes.", servertime: new Date() }));
+    } else if (req.body.mcc < 100) {
+        res.end(JSON.stringify({ status: "low", servertime: new Date() }));
+    } else {
+        res.end(JSON.stringify({ status: "typical", servertime: new Date() }));
     }
 
 	//res.end(JSON.stringify({ success: false, errorMessage: "Number of checker calls exceeds the maximum  " + OneMinuteCalls + " calls per minute.", servertime: new_now }));
 
-    res.end(JSON.stringify({ status: "typical", servertime: new Date() }));
+
     //res.end(JSON.stringify({ success: false, errorMessage: err.message, servertime: new Date() }));
 }
 

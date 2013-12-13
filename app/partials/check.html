@@ -27,24 +27,27 @@
 	<label for="receiptsCard">1099-K card receipts </label>
 	</div>
 	<div>
-	<input type="text" name="receiptsCard" ng-model="checkInfo.receiptsCard" required />   
+	<input type="text" name="receiptsCard" ng-model="checkInfo.receiptsCard" ng-pattern="ptnDollars" required />
 	<span class="error" ng-show="checkForm.receiptsCard.$error.required">*</span>
-	</div>
+    <span class="error" ng-show="checkForm.receiptsCard.$error.pattern">Enter a dollar amount</span>
+    </div>
 
 	<div>
 	<label for="receiptsTotal">Total Receipts </label>
 	</div>
 	<div>
-	<input type="text" name="receiptsTotal" ng-model="checkInfo.receiptsTotal" required />   
+	<input type="text" name="receiptsTotal" ng-model="checkInfo.receiptsTotal" ng-pattern="ptnDollars" required />
 	<span class="error" ng-show="checkForm.receiptsTotal.$error.required">*</span>
+    <span class="error" ng-show="checkForm.receiptsTotal.$error.pattern">Enter a dollar amount</span>
 	</div>
 	 
 	<div>
 	<label for="transactionCount">Transaction Count </label>
 	</div>
 	<div>
-	<input type="text" name="transactionCount" ng-model="checkInfo.transactionCount" required />   
+	<input type="text" name="transactionCount" ng-model="checkInfo.transactionCount" ng-pattern="ptnNumber" required />
 	<span class="error" ng-show="checkForm.transactionCount.$error.required">*</span>
+    <span class="error" ng-show="checkForm.transactionCount.$error.pattern">Enter the number of transactions</span>
 	</div>
 	
 </div>

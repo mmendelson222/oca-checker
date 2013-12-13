@@ -6,6 +6,8 @@ angular.module('myApp.checkCode', [])
 
 	$scope.ptnMcc = /^\s*\d{3}\s*$/
 	$scope.ptnZip = /^\s*\d{5}\s*$/
+    $scope.ptnDollars = /^\s*\d+\.?\d?\d?\s*$/
+    $scope.ptnNumber = /^\s*\d+\s*$/
 
 	$scope.checkInfo = requestService,
 	 

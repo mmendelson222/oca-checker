@@ -32,11 +32,43 @@
 
 .error {color:red;}
 
-.floatleft {float: left;}
-.floatright {float: right;}
+.resultsPadding {padding:1em}
 
-.contentLeft {float: left;}
-.inputRight {float: left; width:200px}
+.resultsWrapper {background-color: #eeeeee;}
+.resultsBox {
+    background-color: #eeeeee;
+    width: 100%;
+    float: left;
+    margin-right: -300px;
+}
+.resultsLeft {
+    float: left;
+    margin-right: 300px;
+}
+.resultsRight {
+    float: right;
+    width:300px;
+}
+.resultsRight table {width:100%}
+.resultsRight th {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(252, 253, 249)), to(rgb(235, 245, 214)));
+    background-color: #ffffff;
+    padding: 0.9375em;
+    text-align: center;
+    color: #333333;
+    font-size: 0.875em;
+    font-weight: normal;
+    border-bottom: dotted 1px #dddddd;
+}
+.resultsRight td {
+    background-color: #ffffff;
+    padding: 0.9375em;
+    text-align: center;
+    color: #333333;
+    font-size: 0.875em;
+    font-weight: normal;
+    border-bottom: dotted 1px #dddddd;
+}
 
 .stepLinks {width:580px}
 .stepLinks td {text-align: center}
