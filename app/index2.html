@@ -9,7 +9,7 @@
 <body>
 
 <form action="/service/Authenticate" id="AuthForm">
-  PTIN: <input type="text" name="ptin" placeholder="Inupt PTIN..."  required="required"><br />
+  PTIN: <input type="text" name="ptin" placeholder="Inupt PTIN..."  required="required" value="P00000000"><br />
   EMAIL: <input type="text" name="email" placeholder="Inupt Email..."  required="required"><br />
 
     <p>
@@ -19,8 +19,12 @@
     </p>
     <p>
 
-  <input type="button" value="Test Compute" onclick="compute()">
+  <input type="button" value="Test Compute" onclick="compute()"> <br/>
 
+  What kind of result would you like?
+        <input type="radio" name="resultType" value="typical">typical<br/>
+        <input type="radio" name="resultType" value="low">low<br/>
+        <input type="radio" name="resultType" value="error">error<br/>
     </p>
   
 </form>
@@ -38,7 +42,7 @@
           ptin = $form.find("input[name='ptin']").val(),
           email = $form.find("input[name='email']").val(),
           url = $form.attr("action");
-        // Send the data using post
+        // Send the data using post.  Note: activation code is hard wired.
         var posting = $.post(url, { ptin: ptin, email: email, code: '1' });
         // Put the results in a div
         posting.done(function (data) {
@@ -46,14 +50,35 @@
         });
     });
 
+    var resultType = "";
+    $("input:radio[name=resultType]").click(function() {
+        resultType = $(this).val();
+    });
+
     function compute() {
-        var posting = $.post("/service/Calculate?uuid=111", { data1: 1, data2: 2 });
+        var oRequest = {
+            mcc: "",
+            zip: "12345",
+            receiptsCard: "1",
+            receiptsTotal: "1",
+            transactionCount: "1"
+        };
+
+        switch(resultType) {
+            case "typical":
+                oRequest.mcc = "9999"; break;
+            case "low":
+                oRequest.mcc = "0099"; break;
+            case "error":
+                oRequest.mcc = "0000"; break;
+        }
+        var posting = $.post("/service/Calculate", oRequest);
         // Put the results in a div
         posting.done(function (data) {
-            if (data.status) {
-                $("#result").empty().append("<b>Compute Result: " + data.result + "<br/>");
-            } else {
+            if (data.status == 'error') {
                 $("#result").empty().append("<b>Compute Error Message: " + data.errorMessage + "<br/>");
+            } else {
+                $("#result").empty().append("<b>Compute Result: " + data.status + "<br/>");
             }
         });
     }

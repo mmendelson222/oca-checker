@@ -1,3 +1,12 @@
+# tgov-ocachecker
+## AKA Payment Mix
+
+This is an AngularJS project which uses a node.js web service.
+
+This project was started initially based on the angular-seed project.  The notes for that project
+follow, though much has been changed/added.
+
+
 # angular-seed — the seed for AngularJS apps
 
 This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
