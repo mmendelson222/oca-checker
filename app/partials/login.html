@@ -2,9 +2,12 @@
     <div ng-include="'partials/progress.html'" onload="step='1'"></div>
 </div>
 <h2>User Verification</h2>
-Use of this tool is currently limited to return preparers possessing a Preparer Tax Identification Number (PTIN).
+<p>Use of this tool is currently limited to return preparers possessing a Preparer Tax Identification Number (PTIN).
 <br/>
 If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTIN-Top-FAQ-3">register for a PTIN</a> to use this tool. 
+</p>
+
+<p class="error-msg" ng-show="userInfo.error">{{userInfo.error}}</p>
 
 <form name="loginForm">  <!-- form is present to access errors -->
 <div>
@@ -13,7 +16,7 @@ If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTI
 	</div>
 	<div>
 	<input type="text" name="ptin" ng-model="userInfo.ptin" ng-pattern="ptnPTIN" ng-maxlength="9" popover-trigger="focus" popover="The letter P, followed by 8 digits" required />   
-	<span class="error" ng-show="loginForm.ptin.$error.required">*</span>
+	<span class="error" ng-show="loginForm.ptin.$error.required">Required</span>
 	<span class="error" ng-show="loginForm.ptin.$error.pattern">Enter a valid PTIN, starting with "P"</span>
 	</div>
 
@@ -21,7 +24,7 @@ If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTI
 	<label for="email">Email Address</label>
 	</div>
 	<div><input name="email" type="email" ng-model="userInfo.email" />
-	<span class="error" ng-show="loginForm.email.$error.required">*</span>
+	<span class="error" ng-show="loginForm.email.$error.required">Required</span>
 	<span class="error" ng-show="loginForm.email.$error.email">Enter a properly formatted email address.</span>
 	</div>
 
@@ -30,7 +33,7 @@ If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTI
     </div>
     <div>
         <input type="text" name="code" ng-model="userInfo.code" required />
-        <span class="error" ng-show="loginForm.code.$error.required">*</span>
+        <span class="error" ng-show="loginForm.code.$error.required">Required</span>
     </div>
 </div>
 

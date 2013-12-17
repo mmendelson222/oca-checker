@@ -30,7 +30,16 @@
   padding: 0;
 }
 
-.error {color:red;}
+.error {color: #cc0000;}
+
+.error-msg {
+    color: #cc0000;
+    font-weight: bold;
+    display: block;
+    padding: 0.3125em 0.625em 0.3125em 1.75em;
+    margin: 0.625em 0;
+    background: url(../img/error.png) no-repeat left center;
+}
 
 .resultsPadding {padding:1em}
 
@@ -78,7 +87,7 @@ h1 {font-weight: normal;
     font-size: 1.75em;
 }
 h2 {font-weight: normal;
-    color: #325dff;
+    color: #ff3300;
     font-size: 1.25em;
 }
 

@@ -38,7 +38,6 @@ angular.module('myApp.loginCode', [])
 	return {
         login: function(user) {
 			if (userService.isLogged()) {
-				alert("You're already logged in");  //should never get here based on redirect.
 				$location.path("/check");
 				return;
 			}
@@ -47,14 +46,15 @@ angular.module('myApp.loginCode', [])
 			$http.post("/service/authenticate", user).
 			success(function(data, status, headers, config) {
 				if (data['authenticated'] == true) {
+                    user.error = null;
 					userService.logMeIn();
 					$location.path("/check");
 				} else {
-					alert("not authenticated");
+                    user.error = "Login unsuccessful. Please verify your information below and try again.";
 				}
 			}).
 			error(function(data, status, headers, config) {
-				alert("error when connecting to the web service: "+status);
+                user.error = "Web service connection error: "+status;
 			})
         },
 
