@@ -30,7 +30,7 @@
   padding: 0;
 }
 
-.error {color: #cc0000;}
+.error {color: #cc0000; font-weight: bold;}
 
 .error-msg {
     color: #cc0000;
@@ -41,8 +41,7 @@
     background: url(../img/error.png) no-repeat left center;
 }
 
-.resultsPadding {padding:1em}
-
+.boxPadding {padding:1em}
 .resultsWrapper {background-color: #eeeeee;}
 .resultsBox {
     background-color: #eeeeee;
@@ -79,6 +78,28 @@
     border-bottom: dotted 1px #dddddd;
 }
 
+.inputBox {
+    background-color: #eeeeee;
+    width: 100%;
+    float: left;
+    margin-right: -500px;
+}
+.inputLeft {
+    float: left;
+    margin-right: 500px;
+}
+.inputRight {
+    float: right;
+    width:500px;
+}
+
+.grayBox {
+    background-color: #eeeeee;
+    width: 100%;
+}
+
+#feedbackLink {background-color: #111111;}
+
 .stepLinks {width:580px}
 .stepLinks td {text-align: center}
 
@@ -90,6 +111,8 @@ h2 {font-weight: normal;
     color: #ff3300;
     font-size: 1.25em;
 }
+
+.inlineLabel {display: inline-block}
 
 /* see http://getbootstrap.com/2.3.2/scaffolding.html#responsive
 note that the following styles correspond to the breakpoints set in bootstrap-responsive.css*/

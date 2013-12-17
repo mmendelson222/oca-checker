@@ -19,7 +19,7 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/results', {templateUrl: 'partials/results.html', controller: 'ctlCheckReceipts'});
   $routeProvider.when('/print', {templateUrl: 'partials/print.html'});
   $routeProvider.when('/help', {templateUrl: 'partials/help.html'});
-  $routeProvider.when('/exit', {templateUrl: 'partials/exit.html'});
+  $routeProvider.when('/exit', {templateUrl: 'partials/exit.html', controller: 'ctlExit'});
   $routeProvider.when('/invalid', {templateUrl: 'partials/invalid.html'});
   $routeProvider.otherwise({redirectTo: '/invalid'});
 }]);

@@ -2,8 +2,12 @@
 
 /* code related to login */
 angular.module('myApp.loginCode', [])
+    .controller('ctlExit', ['$scope', 'userService', function($scope, userService){
+        userService.logMeOut();
+    }])
+
   .controller('ctlLogin', ['$scope', '$location', 'userService', 'loginFactory', function($scope, $location, userService, lfactory) {
-	 
+
 	$scope.ptnPTIN = /^\s*[Pp]\d{8}\s*$/
 	
 	$scope.userInfo = userService, 
@@ -65,7 +69,6 @@ angular.module('myApp.loginCode', [])
 		isloggedin: function() {
 			return userService.isLogged();
 		}
-
     };
 }])
   
