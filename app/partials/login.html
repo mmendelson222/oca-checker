@@ -2,16 +2,22 @@
     <div ng-include="'partials/progress.html'" onload="step='1'"></div>
 </div>
 <h2>User Verification</h2>
-<p>Use of this tool is currently limited to return preparers possessing a Preparer Tax Identification Number (PTIN).
-<br/>
-If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTIN-Top-FAQ-3">register for a PTIN</a> to use this tool. 
+<p>Use of this tool is limited to return preparers with an invitation from AICPA to assis in testing, and a valid Preparer Tax Identification Number (PTIN) issued prior to September 10, 2013.
 </p>
 
 <p class="error-msg" ng-show="userInfo.error">{{userInfo.error}}</p>
 
 <form name="loginForm">  <!-- form is present to access errors -->
 <div>
-	<div>
+    <div>
+        <label for="code">Invitation Code</label>
+    </div>
+    <div>
+        <input type="text" name="code" ng-model="userInfo.code" required />
+        <span class="error" ng-show="loginForm.code.$error.required">Required</span>
+    </div>
+
+    <div>
 	<label for="ptin"><abbr title="Preparer Tax Identification Number">PTIN</abbr></label>
 	</div>
 	<div>
@@ -20,27 +26,17 @@ If you don't already have one, <a href="http://www.irs.gov/Tax-Professionals/PTI
 	<span class="error" ng-show="loginForm.ptin.$error.pattern">Enter a valid PTIN, starting with "P"</span>
 	</div>
 
-	<div>
-	<label for="email">Email Address</label>
-	</div>
-	<div><input name="email" type="email" ng-model="userInfo.email" />
-	<span class="error" ng-show="loginForm.email.$error.required">Required</span>
-	<span class="error" ng-show="loginForm.email.$error.email">Enter a properly formatted email address.</span>
-	</div>
+    <div>
+        <input type="checkbox" name="acknowledge"  ng-model="userInfo.acknowledge" required />
+        <label for="acknowledge">By checking here, you acknowledge that your <abbr title="Preparer Tax Identification Number">PTIN</abbr> will be used to access this pilot for testing and verification purposes. </label>
+    </div>
 
-    <div>
-        <label for="code">Invitation Code</label>
-    </div>
-    <div>
-        <input type="text" name="code" ng-model="userInfo.code" required />
-        <span class="error" ng-show="loginForm.code.$error.required">Required</span>
-    </div>
 </div>
 
 <div class="btn-group">
-	<button type="button" class="btn btn-primary" onclick="javascript:location.href='http://irs.gov'" >
+<!--	<button type="button" class="btn btn-primary" onclick="javascript:location.href='http://irs.gov'" >
 		< Return to IRS.GOV
-	</button>
+	</button> -->
 	<button type="submit" class="btn btn-primary" ng-click="logMeIn()" ng-disabled="!loginForm.$valid" >
 		Continue >
 	</button>

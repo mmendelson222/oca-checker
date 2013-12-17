@@ -82,13 +82,12 @@ angular.module('myApp.loginCode', [])
 		logMeOut: function() {
             oUser.authenticated=false;
 			oUser.ptin = '';
-			oUser.email = '';
             oUser.code = '';
+            oUser.acknowledge = false;
             $cookieStore.remove("authenticated");
 		},
 		authenticated:  $cookieStore.get("authenticated"),
 		ptin: '',
-		email: '',
         code: ''
 	};
 	return oUser;
