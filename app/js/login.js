@@ -38,7 +38,7 @@ angular.module('myApp.loginCode', [])
 
 
 //for checking the user's login
-.factory('loginFactory', ['$http', '$location', 'userService', function($http, $location, userService) {
+.factory('loginFactory', ['$http', '$location', '$analytics', 'userService', function($http, $location, $analytics, userService) {
 	return {
         login: function(user) {
 			if (userService.isLogged()) {
@@ -52,8 +52,10 @@ angular.module('myApp.loginCode', [])
 				if (data['authenticated'] == true) {
                     user.error = null;
 					userService.logMeIn();
+                    $analytics.eventTrack('signin', {  category: 'login', label: 'success' });
 					$location.path("/check");
 				} else {
+                    $analytics.eventTrack('signin', {  category: 'login', label: 'failure' });
                     user.error = "Login unsuccessful. Please verify your information below and try again.";
 				}
 			}).
@@ -63,6 +65,7 @@ angular.module('myApp.loginCode', [])
         },
 
 		logout: function() {
+            $analytics.eventTrack('signin', {  category: 'logout', label: 'success' });
 			userService.logMeOut();
 		}, 
 		
