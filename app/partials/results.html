@@ -15,9 +15,12 @@
                     <h2>Results - Typical revenue from cash and checks</h2>
                     <p>Businesses of your type consistently report a similar portion of gross receipts from non-card sources, including cash and checks.  </p>
                 </span>
+                <span ng-switch-when="notloggedin">
+                    <div class="error-msg">Your session expired or has been reset.  <a href="/#/login" title="Log in">Please click here to log in</a>. </div>
+                </span>
                 <span ng-switch-when="error">
                     <h2>Calculation error</h2>
-                    <p>{{checkInfo.errorMessage}}</p>
+                    <div class="error-msg">{{checkInfo.errorMessage}}</div>
                 </span>
                 <div ng-switch-default>
                     Error: {{checkInfo.status}} {{checkInfo.errorMessage}}

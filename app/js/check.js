@@ -14,9 +14,11 @@ angular.module('myApp.checkCode', [])
 	$scope.submitRequest = function() { 
 		cFactory.check($scope.checkInfo);
 	}
-	
-	if (!lfactory.isloggedin()) {
-		$location.path("/login");
+
+    if ($scope.checkInfo.status == 'notloggedin'){
+        //returned with status
+    } else	if (!lfactory.isloggedin()) {
+        $location.path("/login");
 	}
   }])
   
@@ -36,7 +38,6 @@ angular.module('myApp.checkCode', [])
                             break;
                         case 'notloggedin':
                             userService.logMeOut();
-                            $location.path("/logintimeout");
                             break;
                         default:
                             checkInfo.status = "error";
