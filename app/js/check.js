@@ -10,7 +10,7 @@ angular.module('myApp.checkCode', [])
     $scope.ptnNumber = /^\s*\d+\s*$/
 
 	$scope.checkInfo = requestService,
-	 
+
 	$scope.submitRequest = function() { 
 		cFactory.check($scope.checkInfo);
 	}
@@ -33,6 +33,10 @@ angular.module('myApp.checkCode', [])
                     switch(checkInfo.status) {
                         case 'low':
                         case 'typical':
+                            break;
+                        case 'notloggedin':
+                            userService.logMeOut();
+                            $location.path("/logintimeout");
                             break;
                         default:
                             checkInfo.status = "error";

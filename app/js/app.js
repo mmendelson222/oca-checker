@@ -10,7 +10,9 @@ angular.module('myApp', [
   'myApp.directives',
   'myApp.loginCode',
   'myApp.checkCode',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angulartics',
+  'angulartics.google.analytics'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {templateUrl: 'partials/login.html', controller: 'ctlLogin'});

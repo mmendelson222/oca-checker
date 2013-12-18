@@ -4,8 +4,9 @@
 <h2>Check Receipts</h2>
 <p>This tool is designed to provide additional informatin regarding the IRS's use of form 1099-K in assessing businesses.  Using your applicable tax return and Form 1099-K, please enter your business's information in the following fields.  <a href="#/privacy">Privacy Policy</a></p> 
     <div class="resultsWrapper clearfix">
-        <div class="inputBox boxPadding">
+        <div class="inputBox">
             <div class="inputLeft">
+                <div class="boxPadding">
             <form name="checkForm">  <!-- form is present to access errors -->
                 <h2>Enter your information</h2>
 	<div>
@@ -53,20 +54,14 @@
     <span class="error" ng-show="checkForm.receiptsTotal.$error.pattern">Enter a dollar amount</span>
 	</div>
                 <div class="btn-group">
-                    <!--
-                    <button type="button" class="btn btn-primary" onclick="javascript:window.history.back()" >
-                            < Previous
-                    </button>
-                    -->
                     <button type="submit" class="btn btn-primary" ng-click="submitRequest()" ng-disabled="!checkForm.$valid" >
                         Calculate >
                     </button>
                 </div>
-
             </form>
             </div>
         </div>
-
+     </div>
 
         <div class="inputRight">
             <div class="boxPadding">

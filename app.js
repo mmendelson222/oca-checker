@@ -36,7 +36,7 @@ app.listen(process.env.PORT || 3000);
 function calculate(req, res, now) {
     if (!now) res.writeHead(200, { "Content-Type": "application/json" });
     if (!req.session.authenticate) {
-        res.end(JSON.stringify({ status: "error", errorMessage: "No session or session timed out.", servertime: new Date()}));
+        res.end(JSON.stringify({ status: "notloggedin", errorMessage: "No session or session timed out.", servertime: new Date()}));
         return;
     }
 
