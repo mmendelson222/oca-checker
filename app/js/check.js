@@ -9,7 +9,7 @@ angular.module('myApp.checkCode', [])
     $scope.ptnDollars = /^\s*\d+\.?\d?\d?\s*$/
     $scope.ptnNumber = /^\s*\d+\s*$/
 
-	$scope.checkInfo = requestService,
+	$scope.checkInfo = requestService;
 
 	$scope.submitRequest = function() { 
 		cFactory.check($scope.checkInfo);
@@ -35,6 +35,7 @@ angular.module('myApp.checkCode', [])
                     switch(checkInfo.status) {
                         case 'low':
                         case 'typical':
+                            $location.path("/results");
                             break;
                         case 'notloggedin':
                             userService.logMeOut();
@@ -48,8 +49,6 @@ angular.module('myApp.checkCode', [])
 					checkInfo.status = "error";
                     checkInfo.errorMessage = "Web service failure: " + data;
 				}
-				
-				$location.path("/results");
 			}).
 			error(function(data, status, headers, config) {
                     checkInfo.status = "error";

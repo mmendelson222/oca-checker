@@ -7,6 +7,18 @@
         <div class="inputBox">
             <div class="inputLeft">
                 <div class="boxPadding">
+
+             <div ng-switch="checkInfo.status">
+                <span ng-switch-when="notloggedin">
+                    <div class="error-msg">Your session expired or has been reset.  <a href="/#/login" title="Log in">Please click here to log in</a>. </div>
+                </span>
+                <span ng-switch-when="error">
+                    <h2>Calculation error</h2>
+                    <div class="error-msg">{{checkInfo.errorMessage}}</div>
+                </span>
+              </div>
+
+
             <form name="checkForm">  <!-- form is present to access errors -->
                 <h2>Enter your information</h2>
 	<div>

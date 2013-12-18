@@ -9,8 +9,8 @@ angular.module('myApp.loginCode', [])
   .controller('ctlLogin', ['$scope', '$location', 'userService', 'loginFactory', function($scope, $location, userService, lfactory) {
 
 	$scope.ptnPTIN = /^\s*[Pp]\d{8}\s*$/
-	
-	$scope.userInfo = userService, 
+
+	$scope.userInfo = userService;
 	 
  	$scope.logMeIn = function() { 
 		var result = lfactory.login($scope.userInfo); 
