@@ -78,19 +78,14 @@
     border-bottom: dotted 1px #dddddd;
 }
 
-.inputBox {
-    background-color: #eeeeee;
-    width: 100%;
-    float: left;
-    margin-right: -500px;
-}
 .inputLeft {
+    max-width: 400px;
     float: left;
-    margin-right: 500px;
+    width: 47%;
 }
 .inputRight {
     float: right;
-    width:500px;
+    width: 47%;
 }
 
 .grayBox {
@@ -136,10 +131,31 @@ note that the following styles correspond to the breakpoints set in bootstrap-re
     h2 {font-size: 1.25em;}
 }
 
+/* two -> 1 column */
+@media (max-width: 656px) {
+    .resultsBox {
+        float: none;
+        margin-right: 0px;
+    }
+    .resultsLeft {
+        float: none;
+        margin-right: 0px;
+    }
+    .resultsRight {
+        float: none;
+        width:100%;
+    }
+    .inputLeft, .inputRight {
+        float: none;
+        width: 100%;
+    }
+}
+
+
 /* Landscape phones and down */
 @media (max-width: 480px) {
     form > div {
-        margin: 0 0 15px 0;
+        margin: 0 0 0 0;
     }
     form > div > label,
     legend {
@@ -158,7 +174,7 @@ note that the following styles correspond to the breakpoints set in bootstrap-re
     input[type=password],
     textarea,
     select {
-        width: 100%;
+        width: 90%;
     }
 }
 
