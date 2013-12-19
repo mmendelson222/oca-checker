@@ -13,7 +13,7 @@
         <label for="code">Invitation Code</label>
     </div>
     <div>
-        <input type="text" name="code" ng-model="userInfo.code" required />
+        <input type="text" id="code" name="code" ng-model="userInfo.code" required />
         <span class="error" ng-show="loginForm.code.$error.required">*</span>
     </div>
 
@@ -21,13 +21,13 @@
 	<label for="ptin"><abbr title="Preparer Tax Identification Number">PTIN</abbr></label>
 	</div>
 	<div>
-	<input type="text" name="ptin" ng-model="userInfo.ptin" ng-pattern="ptnPTIN" ng-maxlength="9" popover-trigger="focus" maxlength="9" required />
+	<input type="text" id="ptin" name="ptin" ng-model="userInfo.ptin" ng-pattern="ptnPTIN" ng-maxlength="9" popover-trigger="focus" maxlength="9" required />
 	<span class="error" ng-show="loginForm.ptin.$error.required">*</span>
 	<span class="error" ng-show="loginForm.ptin.$error.pattern">Enter a valid PTIN, starting with "P"</span>
 	</div>
 
     <div>
-        <input type="checkbox" name="acknowledge" ng-model="userInfo.acknowledge" required />
+        <input type="checkbox" id="acknowledge" name="acknowledge" ng-model="userInfo.acknowledge" required />
         <label for="acknowledge" class="inlineLabel"> By checking here, you acknowledge that your <abbr title="Preparer Tax Identification Number">PTIN</abbr> will be used to access this pilot for testing and verification purposes. </label>
         <span class="error" ng-show="loginForm.acknowledge.$error.required">*</span>
     </div>
