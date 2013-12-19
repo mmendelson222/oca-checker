@@ -2,7 +2,7 @@
 
 /* code related to merchant income check */
 angular.module('myApp.checkCode', [])
-  .controller('ctlCheckReceipts', ['$scope', '$location', 'requestService', 'checkFactory', 'loginFactory', function($scope, $location, requestService, cFactory, lfactory) {
+  .controller('ctlCheckReceipts', ['$scope', '$location', 'requestService', 'checkFactory', 'loginFactory', '$anchorScroll', function($scope, $location, requestService, cFactory, lfactory, $anchorScroll) {
 
 	$scope.ptnMcc = /^\s*\d{3}\s*$/
 	$scope.ptnZip = /^\s*\d{5}\s*$/
@@ -11,9 +11,18 @@ angular.module('myApp.checkCode', [])
 
 	$scope.checkInfo = requestService;
 
+    // scroll to top.
+    $location.hash('top');
+    $anchorScroll();
+
 	$scope.submitRequest = function() { 
 		cFactory.check($scope.checkInfo);
 	}
+
+    $scope.goToLogin = function() {
+        $scope.checkInfo.status = null;
+        $location.path("/login");
+    }
 
     if ($scope.checkInfo.status == 'notloggedin'){
         //returned with status

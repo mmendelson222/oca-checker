@@ -9,7 +9,7 @@
 
              <div ng-switch="checkInfo.status">
                 <span ng-switch-when="notloggedin">
-                    <div class="error-msg">Your session expired or has been reset.  <a href="/#/login" title="Log in">Please click here to log in</a>. </div>
+                    <div class="error-msg">Your session expired or has been reset.  <a href="#" ng-click="goToLogin()" title="Log in">Please click here to log in</a>. </div>
                 </span>
                 <span ng-switch-when="error">
                     <h2>Calculation error</h2>
