@@ -1,6 +1,8 @@
 # tgov-ocachecker
 ## AKA Payment Mix
 
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 This is an AngularJS project which uses a node.js web service.
 
 This project was started initially based on the angular-seed project.  The notes for that project
