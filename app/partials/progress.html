@@ -1,11 +1,11 @@
-<div class="hidden-phone">
+<div class="hidden-phone" ng-controller="ctlHelp">
      <center>
         <div class="row">
             <table class="stepLinks">
                 <tr>
-                    <td><a href="#/login" class="has-tip" data-reveal-id="help-placeholder" title="User Verification">User Verification</a></td>
-                    <td><a href="#/check" class="has-tip" data-reveal-id="help-placeholder" title="Check Receipts">Check Receipts</a></td>
-                    <td><a href="#/results" class="has-tip" data-reveal-id="help-placeholder" title="Compare results">Compare Results</a></td>
+                    <td><a ng-click="helpLogin()" href="#" class="has-tip" data-reveal-id="help-placeholder" title="User Verification">User Verification</a></td>
+                    <td><a ng-click="helpCheck()" href="#/check" class="has-tip" data-reveal-id="help-placeholder" title="Check Receipts">Check Receipts</a></td>
+                    <td><a ng-click="helpCompare()" href="#/results" class="has-tip" data-reveal-id="help-placeholder" title="Compare results">Compare Results</a></td>
                 </tr>
             </table>
         </div>

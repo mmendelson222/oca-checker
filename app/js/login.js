@@ -36,12 +36,12 @@ angular.module('myApp.loginCode', [])
     };
 
     $scope.exitPrompt = function () {
-        var modalInstance = $modal.open({
+        var exitPromptInstance = $modal.open({
             templateUrl: 'partials/modal/exitFeedback.html',
             controller: 'ctlFeedbackModal'
         });
 
-        modalInstance.result.then(function () {
+        exitPromptInstance.result.then(function () {
             $location.path("/exit");
         });
     };
