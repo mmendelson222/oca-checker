@@ -66,7 +66,7 @@ angular.module('myApp.checkCode', [])
         }
     };
 }])
-//for storing user information
+//for storing calculation request data
 .factory('requestService', [function() {
 	var oRequest = {
 			 mcc: "",

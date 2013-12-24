@@ -27,11 +27,23 @@ app.post(/^\/service\/authenticate.*$/i, function (req, res) {
     LogVisit(req);
     authenticate(req, res);
 });
-
+app.post(/^\/service\/feedback.*$/i, function (req, res) {
+    LogVisit(req);
+    feedback(req, res);
+});
 app.use(express.favicon(path.join(__dirname, '/app/img/favicon.ico')));
 app.use(express.static(__dirname + '/app'));
 
 app.listen(process.env.PORT || 3000);
+
+function feedback(req, res, now) {
+    if (!now) res.writeHead(200, { "Content-Type": "application/json" });
+    if (!req.session.authenticate) {
+        res.end(JSON.stringify({ status: "notloggedin", errorMessage: "No session or session timed out.", servertime: new Date()}));
+        return;
+    }
+    res.end(JSON.stringify({ status: "success", servertime: new Date() }));
+}
 
 function calculate(req, res, now) {
     if (!now) res.writeHead(200, { "Content-Type": "application/json" });
@@ -52,10 +64,7 @@ function calculate(req, res, now) {
     } else {
         res.end(JSON.stringify({ status: "typical", servertime: new Date() }));
     }
-
 	//res.end(JSON.stringify({ success: false, errorMessage: "Number of checker calls exceeds the maximum  " + OneMinuteCalls + " calls per minute.", servertime: new_now }));
-
-
     //res.end(JSON.stringify({ success: false, errorMessage: err.message, servertime: new Date() }));
 }
 
@@ -95,10 +104,9 @@ function LogVisit(req) {
         method: req.method,
         ptinbody: req.body.ptin,
         ptinsession: req.session.ptin,
-        isloggedin: req.authenticate,
+        feedback: req.body.text,
         hostname: os.hostname()
     };
     console.log(logContent);
 }
-
 
