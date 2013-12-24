@@ -3,8 +3,7 @@
 /* code related to feedback */
 angular.module('myApp.feedbackCode', [])
     .controller('ctlFeedbackModal', ['$scope', '$modalInstance', 'feedbackService', 'feedbackFactory', function ($scope, $modalInstance, feedbackService, feedbackFactory) {
-
-        $scope.feedback = feedbackService;
+        $scope.feedback = {text: ''};
 
         $scope.ok = function () {
             $modalInstance.close();
@@ -21,8 +20,8 @@ angular.module('myApp.feedbackCode', [])
     .factory('feedbackFactory', ['$http', '$analytics', function($http, $analytics) {
         return {
             sendFeedback: function(feedback) {
+                if (feedback.text) {  //don't send empty
 
-                //note: this call is asynchronous.
                 $http.post("/service/feedback", feedback).
                     success(function(data, status, headers, config) {
                         $analytics.eventTrack('feedback', {  category: 'feedback', label: 'feedback' });
@@ -30,12 +29,8 @@ angular.module('myApp.feedbackCode', [])
                     error(function(data, status, headers, config) {
                         alert("Web service connection error: "+status);
                     })
+                }
             }
         };
-    }])
-
-//for storing feedback
-    .service('feedbackService', [function() {
-        text: ''
     }])
 ;
