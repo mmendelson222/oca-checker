@@ -16,10 +16,6 @@ angular.module('myApp.loginCode', [])
 		var result = lfactory.login($scope.userInfo); 
 	}
 
-	$scope.logMeOut = function() { 
-		lfactory.logout(); 
-	}
-	
 	$scope.isLoggedIn =  function () { 
 		return lfactory.isloggedin();
 	}
@@ -30,21 +26,30 @@ angular.module('myApp.loginCode', [])
   }])
   
   //for logout and exit links
-  .controller('ctlLoginIndicator', ['$scope', '$modal', 'loginFactory', function($scope, $modal, lfactory) {
+  .controller('ctlLoginIndicator', ['$scope', '$modal', '$location', 'loginFactory', function($scope, $modal, $location, lfactory) {
 	$scope.isLoggedIn =  function () {
 		return lfactory.isloggedin();
 	};
 
-    $scope.exitPrompt = function () {
+    $scope.logMeOut = function() {
+        lfactory.logout();
+    };
 
+    $scope.exitPrompt = function () {
         var modalInstance = $modal.open({
             templateUrl: 'partials/modal/exitFeedback.html',
             controller: 'ctlFeedbackModal'
         });
 
-        modalInstance.result.then(function (selectedItem, okClicked) {
-            alert("asdf");
-            if (okClicked) alert("ok was clicked");
+        modalInstance.result.then(function () {
+            $location.path("/exit");
+        });
+    };
+
+    $scope.feedbackPrompt = function () {
+        $modal.open({
+            templateUrl: 'partials/modal/feedback.html',
+            controller: 'ctlFeedbackModal'
         });
     };
  }])

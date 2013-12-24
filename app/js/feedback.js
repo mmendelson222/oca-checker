@@ -18,14 +18,13 @@ angular.module('myApp.feedbackCode', [])
 
 
 //for checking the user's login
-    .factory('feedbackFactory', ['$http', '$location', '$analytics', function($http, $location, $analytics) {
+    .factory('feedbackFactory', ['$http', '$analytics', function($http, $analytics) {
         return {
             sendFeedback: function(feedback) {
 
                 //note: this call is asynchronous.
                 $http.post("/service/feedback", feedback).
                     success(function(data, status, headers, config) {
-                        alert("feedback sent")
                         $analytics.eventTrack('feedback', {  category: 'feedback', label: 'feedback' });
                     }).
                     error(function(data, status, headers, config) {
