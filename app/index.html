@@ -19,7 +19,7 @@
 		<li><a href="#/print">Print</a></li>
 		<li><a href="#/help">Help</a></li>
 		<li><a href="#/exit">Exit</a></li>
-		
+        <li><a ng-controller="ExitCtrl" ng-click="open()" href="#">Modal</a></li>
 		<li ng-show="isLoggedIn()"><a href="#/login" ng-controller="ctlLogin" ng-click="logMeOut()">Logout</a></li>
 	  </ul>
  </div>
@@ -48,6 +48,7 @@
 <script src="js/check.js"></script>  
 <script src="js/filters.js"></script>
 <script src="js/directives.js"></script>
+<script src="js/modals.js"></script>
 <script src="lib/angulartics.js"></script>
 <script src="lib/angulartics-google-analytics.js"></script>
 

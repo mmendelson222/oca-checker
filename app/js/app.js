@@ -11,6 +11,7 @@ angular.module('myApp', [
   'myApp.loginCode',
   'myApp.checkCode',
   'ui.bootstrap',
+  'ui.bootstrap.modal',
   'angulartics',
   'angulartics.google.analytics'
 ]).

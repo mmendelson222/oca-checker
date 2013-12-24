@@ -34,6 +34,8 @@ angular.module('myApp.loginCode', [])
 	$scope.isLoggedIn =  function () {
 		return lfactory.isloggedin();
 	}
+
+
   }])
 
 
