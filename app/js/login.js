@@ -57,25 +57,6 @@ angular.module('myApp.loginCode', [])
     };
  }])
 
-.controller('ctlFeedbackModal', ['$scope', '$modalInstance', 'items', function ($scope, $modalInstance, items) {
-
-    $scope.items = items;
-    $scope.selected = {
-        item: $scope.items[0]
-    };
-
-    $scope.ok = function () {
-        $modalInstance.close($scope.selected.item);
-        alert('ok2');
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-        alert('cancel2');
-    };
-}])
-
-
 //for checking the user's login
 .factory('loginFactory', ['$http', '$location', '$analytics', 'userService', function($http, $location, $analytics, userService) {
 	return {

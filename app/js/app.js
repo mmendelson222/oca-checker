@@ -9,6 +9,7 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.directives',
   'myApp.loginCode',
+  'myApp.feedbackCode',
   'myApp.checkCode',
   'ui.bootstrap',
   'ui.bootstrap.modal',
