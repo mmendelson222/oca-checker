@@ -19,7 +19,7 @@
 		<li><a href="#/print">Print</a></li>
 		<li><a href="#/help">Help</a></li>
 		<li><a href="#/exit">Exit</a></li>
-        <li><a ng-controller="ExitCtrl" ng-click="open()" href="#">Modal</a></li>
+        <li><a ng-click="exitPrompt()" href="#">Modal</a></li>
 		<li ng-show="isLoggedIn()"><a href="#/login" ng-controller="ctlLogin" ng-click="logMeOut()">Logout</a></li>
 	  </ul>
  </div>

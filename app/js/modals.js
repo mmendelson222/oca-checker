@@ -1,29 +1,5 @@
 'use strict';
 
-var ExitCtrl = function ($scope, $modal, $log) {
-
-    $scope.items = ['item1', 'item2', 'item3'];
-
-    $scope.open = function () {
-
-        var modalInstance = $modal.open({
-            templateUrl: 'partials/modal/exitFeedback.html',
-            controller: ModalInstanceCtrl,
-            resolve: {
-                items: function () {
-                    return $scope.items;
-                }
-            }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
-        }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
-        });
-    };
-};
-
 var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
 
     $scope.items = items;
@@ -33,9 +9,11 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
 
     $scope.ok = function () {
         $modalInstance.close($scope.selected.item);
+        alert('ok');
     };
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
+        alert('cancel');
     };
 };

@@ -30,13 +30,32 @@ angular.module('myApp.loginCode', [])
   }])
   
   //for logout link
-  .controller('ctlLoginIndicator', ['$scope', 'loginFactory', function($scope, lfactory) {
+  .controller('ctlLoginIndicator', ['$scope', '$modal', 'loginFactory', function($scope, $modal, lfactory) {
 	$scope.isLoggedIn =  function () {
 		return lfactory.isloggedin();
-	}
+	};
 
+    $scope.items = ['item1', 'item2', 'item3'];
 
-  }])
+    $scope.exitPrompt = function () {
+
+        var modalInstance = $modal.open({
+            templateUrl: 'partials/modal/exitFeedback.html',
+            controller: ModalInstanceCtrl,
+            resolve: {
+                items: function () {
+                    return $scope.items;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+ }])
 
 
 //for checking the user's login
